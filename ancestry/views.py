@@ -11,4 +11,4 @@ def home(request):
     in the client to query ancestors and manipulate the DOM... 
     """
    
-    return render(request, 'accounts/home.html')
+    return render(request, 'ancestry/home.html')

@@ -3,42 +3,18 @@
 //---------------
 
 babyApp.controller('MainCtrl', ['$scope','MainService', '$location', '$http', '$q', '$timeout','$modal', '$log','$window', function($scope, MainService, $location, $http, $q, $timeout, $modal, $log, $window){
-  var currentUser;
-  var ancestors; 
+  
   var fs = MainService.fsClient();    
 
-  var buildAncestorsList = function(persons){
-    var obj = {};
-    // key = givenName;
-    // value = person
-    for (var i = 0; i < persons.length; i++){
-        var person = persons[i];
-        var givenName = person.$getGivenName();
-        var firstName = '';
-
-        if (givenName != undefined) 
-          firstName = givenName.split(' ')[0];
-        else 
-          firstName = "None";
-
-        if (obj.hasOwnProperty(firstName)) {
-          obj[firstName].push(person);
-        } else {
-          obj[firstName] = [person];
-        }
-    }
-    console.log(obj);
-    return obj;
-  };
-  
   $scope.contactName = 'User';
   $scope.loggedIn = false;
-  $scope.ancestorsList;
+  $scope.ancestorsList = [];
 
   $scope.loginUser = function() {
     fs.getAccessToken().then(function(accessToken) {  
       fs.getCurrentUser().then(function(response) {
         $scope.loggedIn = true;
+        
         currentUser = response.getUser();
         $scope.contactName = currentUser.contactName;
         
@@ -46,10 +22,18 @@ babyApp.controller('MainCtrl', ['$scope','MainService', '$location', '$http', '$
           generations:8,
           personDetails: true,
           marriageDetails: true,
-          // descendants: true,
+          descendants: true,
         }).then(function(response){
-          $scope.ancestorsList = buildAncestorsList(response.getPersons());
+          $scope.ancestorsList = MainService.buildAncestors(response.getPersons());
+          
+          fs.getMemory(response.getPersons()[0].id).then(function (response) {
+            var memories = response.getMemory();
+            console.log(memories);
+          });
+
         });
+
+
       });
     });
   };
@@ -57,18 +41,6 @@ babyApp.controller('MainCtrl', ['$scope','MainService', '$location', '$http', '$
   $scope.logoutUser = function() {
     fs.invalidateAccessToken();
     $window.location.reload();
-  };
-
-  // Modal related
-  $scope.isStoriesLoaded = false; 
-  $scope.stories = [];
-  
-  $scope.showStories = function(person){
-    $scope.stories = [];  // List of stories associated to a personId - Should be initialzied back to empty every click...
-    
-    person.getBirthDate.then(function(response){
-      console.log(response);
-    })
   };
 
   // Actions
@@ -79,7 +51,7 @@ babyApp.controller('MainCtrl', ['$scope','MainService', '$location', '$http', '$
       controller: 'ModalInstanceCtrl',
       resolve: {
         items: function () {
-          return $scope.ancestorsList[givenName];
+          return $scope.ancestorsList[givenName].persons;
         }, 
       }
     });
@@ -92,10 +64,11 @@ babyApp.controller('MainCtrl', ['$scope','MainService', '$location', '$http', '$
   };
 }]);
 
-babyApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, items) {
+babyApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, MainService, items) {
   $scope.items = items;             // List of persons 
   
   $scope.personRelation = function(item){
+
     var name = item.$getGivenName();
     var order = item.$getAscendancyNumber();
     var gender = item.$getDisplayGender();
@@ -146,13 +119,17 @@ babyApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, items)
     }
   };
 
-
-
   $scope.ok = function () {
     $modalInstance.close($scope.selected.item);
   };
 
   $scope.cancel = function () {
     $modalInstance.dismiss('cancel');
+  };
+
+  $scope.oneAtATime = true;
+  $scope.status = {
+    isFirstOpen: true,
+    isFirstDisabled: false
   };
 });

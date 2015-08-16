@@ -44,10 +44,10 @@
                         <div class="container">
                             <div id="ancestors">
                                 <ul>
-                                    <li class="{{persons[0].$getDisplayGender()}}" ng-repeat="(name, persons) in ancestorsList">
-                                        <a href="" data-toggle="modal" ng-click="openModal(name)"> 
+                                    <li class="{{obj.persons[0].fsObj.$getDisplayGender()}}" ng-repeat="obj in ancestorsList | orderObjectBy: 'personsCount' : true">
+                                        <a href="" data-toggle="modal" ng-click="openModal(obj.category)"> 
                                             <p class="ancestorName">
-                                               {{ name }}
+                                               {{ obj.category }} ({{ obj.personsCount }})
                                             </p>
                                         </a>
                                     </li>
@@ -67,21 +67,54 @@
     <script type="text/ng-template" id="modalContent.html">
         <div class="modal-body">
           <div class="modal-template">
+                <accordion close-others="oneAtATime">
+                    <accordion-group heading="{{ item.fsObj.$getDisplayName() }}" ng-repeat="item in items | orderObjectBy: 'memoriesCount' : true">
+                        <p> 
+                            {{ item.fsObj.$getBirthDate() }}
+                            <span ng-if="item.fsObj.living == true">- Living</span>
+                            <span ng-if="item.fsObj.living == false">- {{ item.fsObj.$getDeathDate() }}
+                        </p>
+                        <p><em>{{ personRelation(item.fsObj) }}</em></p>
+                        <p><span>{{ item.memoriesCount }} Memories</span></p>
+                        <div class="stories">
+                            <ul>
+                                <li ng-repeat="story in item.memories" style="display:inline-block;">
+                                    <img src="{{ story.$getThumbnailUrl() }}">
+                                </li>
+                            </ul>
+                        </div>
+                        <br>
+                        <div class="find">
+                            <p><a href="">{{ item.fsObj.$getGivenName() }} at behindthename.com</a></p>
+                            <p><a href="https://familysearch.org/tree/#view=ancestor&person="+ item.fsObj.id +"&section=details" target="_blank">View on familysearch.com</a></p>
+                        </div>
+                    </accordion-group>
+                </accordion>
+
+
+
+
+
+
+
+
+
+<!--
             <ul>
               <li ng-repeat="item in items"> 
                 <a href="">
-                    <p class="ancestorName"> {{ item.$getDisplayName() }}</p>
+                    <p class="ancestorName"> {{ item.fsObj.$getDisplayName() }}</p>
                     <p> 
-                        {{ item.$getBirthDate() }} - 
-                        <span ng-if="item.living == true">Living</span>
-                        <span ng-if="item.living == false">{{ item.$getDeathDate() }}</span>
+                        {{ item.fsObj.$getBirthDate() }}
+                        <span ng-if="item.fsObj.living == true">- Living</span>
+                        <span ng-if="item.fsObj.living == false">- {{ item.fsObj.$getDeathDate() }}</span>
                     </p>
-                    <p><em>{{ personRelation(item) }}</em></p>
+                    <p><em>{{ personRelation(item.fsObj) }}</em></p>
                     <p><span ng-show="memories">4 Memories</span></p>
                 </a>
                 <div ng-controller="MainCtrl">
                     <p style="text-align:center;"><a style="text-decoration:underline;" href="" ng-click="showStories(item)" ng-hide="isStoriesLoaded">Show Stories</a></p>
-                    <!--<div class="personDetails" ng-show="isStoriesLoaded" style="text-align:center;">
+                    <div class="personDetails" ng-show="isStoriesLoaded" style="text-align:center;">
                         <div class="stories">
                             <ul>
                                 <li ng-repeat="story in stories" style="display:inline-block;">
@@ -90,13 +123,13 @@
                             </ul>
                         </div>
                         <div class="find">
-                            <p><a href="">{{ item.$getGivenName() }} at behindthename.com</a></p>
-                            <p><a href="https://familysearch.org/tree/#view=ancestor&person="+ item.id +"&section=details" target="_blank">View on familysearch.com</a></p>
+                            <p><a href="">{{ item.fsObj.$getGivenName() }} at behindthename.com</a></p>
+                            <p><a href="https://familysearch.org/tree/#view=ancestor&person="+ item.fsObj.id +"&section=details" target="_blank">View on familysearch.com</a></p>
                         </div>
-                    </div>-->
+                    </div>
                 </div>
               </li>
-            </ul>
+            </ul>-->
           </div>
         </div>
     </script>
