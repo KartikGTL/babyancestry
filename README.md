@@ -9,4 +9,3 @@ When running the app locally, make sure to uncomment the dev settings in account
 ## Sources
 - [Familysearch Javascript SDK Github](https://github.com/FamilySearch/familysearch-javascript-sdk)
 - [Slides from RootsTech 2014](http://dallanq.github.io/rootstech-2014-fs-js-sdk-slides/#/)
-- 
