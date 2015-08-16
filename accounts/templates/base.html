@@ -1,0 +1,45 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Family History Baby Names Recommender</title>
+    
+    <!-- Main Styles -->
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/style.css' %}">
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Parisienne' rel='stylesheet' type='text/css'>
+    
+    <!-- Scripts -->
+    <script src="{% static 'app/components/jquery.js' %}"></script>
+    <script src="{% static 'app/js/scripts.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/familysearch-javascript-sdk/1.0.0/familysearch-javascript-sdk.min.js"></script>
+
+    <!-- Angular JS Dependencies -->
+    <script src="{% static 'app/components/angular.js'%}"></script>
+    <script src="{% static 'app/components/angular-route.js'%}"></script>
+    <script src="{% static 'app/components/angular-cookies.js'%}"></script>
+    <script src="{% static 'app/components/angular-cookies-1.js'%}"></script>
+
+    <!-- UI Bootstrap Modal -->
+    <script src="{% static 'app/components/angular-bootstrap/ui-bootstrap.js' %}"></script>
+    <script src="{% static 'app/components/angular-bootstrap/ui-bootstrap-tpls.js' %}"></script>
+    <script type="text/javascript" src="{% static 'app/components/bootstrap.min.js' %}"></script>
+
+    <!-- Angular JS Scripts -->
+    <script src="{% static 'app/js/app.js'%}"></script>
+    <script src="{% static 'app/js/controllers.js'%}"></script>
+    <script src="{% static 'app/js/services.js'%}"></script>
+</head>
+
+<body ng-app="babyApp">
+    {% block content %}{% endblock %}
+    
+    <div id="footer">
+        <div class="trademark">
+            <img src="{% static 'app/img/elephant.png' %}">
+        </div>
+    </div>
+</body>
+</html>
