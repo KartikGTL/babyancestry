@@ -3,9 +3,20 @@
 //---------------
 
 babyApp.factory('MainService', ['$location', '$http', '$q', '$timeout', function($location, $http, $q, $timeout){
-  var client = '';
-  var ancestors = []; 
-  var IsLoaded = false; 
+  var client = new FamilySearch({
+          client_id: 'a0T3000000BZ6ojEAD',
+          environment: 'sandbox',
+          redirect_uri: 'http://localhost:8000/fs/callback/',
+          // client_id: 'Q5YX-KQ5L-TJ3S-VXXJ-5XMV-KNDZ-LYD2-2B6Q',
+          // environment: 'production',
+          // redirect_uri: 'http://babyancestry.com/fs/callback/',
+          http_function: $http,
+          deferred_function: $q.defer,
+          timeout_function: $timeout,
+          save_access_token: true,
+          // auto_expire: true,
+          auto_signin: true
+      });
   var build = {};
 
   var getFirstName = function(name){
@@ -21,12 +32,10 @@ babyApp.factory('MainService', ['$location', '$http', '$q', '$timeout', function
     ancestors: function(){
       return build;
     }, 
-    buildMemories: function(person){
-      client.getMemory(person.id).then(function (response) {
-        var memories = response.getMemory();
-        console.log(memory);
-        return memories;
-      });
+    buildMemories: function(firstName, arrayIndex, memoriesList){
+      // This function would append the memories to the corresponding person with personId = pid
+      build[firstName].persons[arrayIndex].memories = memoriesList;
+      build[firstName].persons[arrayIndex].memoriesCount = memoriesList.length;
     },
     buildAncestors: function(persons){
       for (var i = 0; i < persons.length; i++){
@@ -41,8 +50,8 @@ babyApp.factory('MainService', ['$location', '$http', '$q', '$timeout', function
             var person_obj = {};
             person_obj['pid'] = person.id;
             person_obj['fsObj'] = person;
-            person_obj['memories'] = this.buildMemories(person);
-            person_obj['memoriesCount']++;
+            person_obj['memories'] = [];
+            person_obj['memoriesCount'] = 0;
 
             build[firstName]['persons'].push(person_obj);
 
@@ -60,34 +69,18 @@ babyApp.factory('MainService', ['$location', '$http', '$q', '$timeout', function
               var person_obj = {};
               person_obj['pid'] = person.id;
               person_obj['fsObj'] = person;
-              person_obj['memories'] = this.buildMemories(person);
+              person_obj['memories'] = [];
               person_obj['memoriesCount'] = 0;
 
               // Push it now!
               build[firstName]['persons'].push(person_obj);
             }
-            
           }
       }
-      console.log(build);
       return build;  
     },
 
     fsClient: function(){
-      client = new FamilySearch({
-          // client_id: 'a0T3000000BZ6ojEAD',
-          // environment: 'sandbox',
-          // redirect_uri: 'http://localhost:8000/fs/callback/',
-          client_id: 'Q5YX-KQ5L-TJ3S-VXXJ-5XMV-KNDZ-LYD2-2B6Q',
-          environment: 'production',
-          redirect_uri: 'http://babyancestry.com/fs/callback/',
-          http_function: $http,
-          deferred_function: $q.defer,
-          timeout_function: $timeout,
-          save_access_token: true,
-          // auto_expire: true,
-          auto_signin: true
-      });
       return client;
     }
   }

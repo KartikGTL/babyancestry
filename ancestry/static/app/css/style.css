@@ -10,6 +10,12 @@ body p {
     font-family: 'Open Sans', sans-serif;
 }
 
+.panel-custom {
+    height: 200px;
+    width: 200px;
+    overflow: hidden;
+}
+
 .ancestorName {
     /*display: inline-block;*/
     font-size: 32px;
@@ -232,7 +238,7 @@ ul, li {
 *:first-child+html .clearfix { zoom: 1; } /* IE7 */
 
 .panel-group .panel .panel-body .stories{
-    float: left;
+    /*float: left;*/
     margin: 10px 0;
     text-align: center;
 }
@@ -265,4 +271,64 @@ ul, li {
 
 .modal-template ul li a:hover {
     text-decoration: none;
+}
+
+.panel-group .panel {
+    border:none;
+    text-align: center;
+}
+
+.panel-group .panel .panel-heading {
+    background: transparent;
+    border: 0;
+}
+
+.panel-group .panel .panel-heading h4{
+    font-weight: bolder;
+    text-transform: uppercase;
+    font-size: 24px;
+}
+
+.panel-group .panel .panel-heading h4 span{
+    text-align: left !important;
+}
+
+
+.panel-group .panel .panel-heading h4 a:hover{
+    text-decoration: none;
+}
+
+.panel-group .panel .panel-body {
+    border: none !important;
+    margin-top: 0;
+    padding-top: 0;
+    line-height: 1.25;
+}
+
+.lifesp {
+    font-size: 24px;
+    font-weight: lighter;
+    line-height: 1.25;
+}
+
+.personrel {
+    font-size: 24px;
+    font-style: italic;
+    font-weight: lighter;
+    color: #5BC0DE;
+    line-height: 1.25;
+}
+
+.find p {
+    font-size: 20px;
+    font-weight: lighter;
+    line-height: 1.25;
+}
+
+.find p a{
+    color: black !important;
+}
+
+.left.carousel-control, .right.carousel-control {
+    background: transparent !important;
 }

@@ -3,7 +3,6 @@
 //---------------
 
 babyApp.controller('MainCtrl', ['$scope','MainService', '$location', '$http', '$q', '$timeout','$modal', '$log','$window', function($scope, MainService, $location, $http, $q, $timeout, $modal, $log, $window){
-  
   var fs = MainService.fsClient();    
 
   $scope.contactName = 'User';
@@ -25,15 +24,7 @@ babyApp.controller('MainCtrl', ['$scope','MainService', '$location', '$http', '$
           descendants: true,
         }).then(function(response){
           $scope.ancestorsList = MainService.buildAncestors(response.getPersons());
-          
-          fs.getMemory(response.getPersons()[0].id).then(function (response) {
-            var memories = response.getMemory();
-            console.log(memories);
-          });
-
         });
-
-
       });
     });
   };
@@ -50,6 +41,9 @@ babyApp.controller('MainCtrl', ['$scope','MainService', '$location', '$http', '$
       templateUrl: 'modalContent.html',
       controller: 'ModalInstanceCtrl',
       resolve: {
+        firstName: function(){
+          return givenName;
+        },
         items: function () {
           return $scope.ancestorsList[givenName].persons;
         }, 
@@ -64,11 +58,25 @@ babyApp.controller('MainCtrl', ['$scope','MainService', '$location', '$http', '$
   };
 }]);
 
-babyApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, MainService, items) {
+babyApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, MainService, items, firstName) {
+  var fs = MainService.fsClient();  
   $scope.items = items;             // List of persons 
+  $scope.ancestors = MainService.ancestors();
   
-  $scope.personRelation = function(item){
+  // CAROUSEL
+  $scope.myInterval = 500;
+  $scope.noWrapSlides = true;
 
+  $scope.getMemories = function(person, arrayIndex){
+    fs.getPersonMemoriesQuery(person.id).then(function (response) {
+      var memories = response.getMemories();
+      MainService.buildMemories(firstName, arrayIndex, memories);
+      console.log($scope.items);
+    });
+  };
+  
+
+  $scope.personRelation = function(item){
     var name = item.$getGivenName();
     var order = item.$getAscendancyNumber();
     var gender = item.$getDisplayGender();
@@ -106,9 +114,13 @@ babyApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, MainSe
           }
         }
 
-        for (var k = 1; k <= howFar -1; k++){
-          relation = relation + " great";
+        relation = relation + " great";
+        var times = 1;
+        for (var k = 1; k <= howFar -2; k++){
+          times++; 
         }
+        if (times != 1)
+          relation = relation + "(" + times + "x)";
         relation = relation + " grand " +genderEq;
         sentence = name + " is your " + relation + "!";
         return sentence;
@@ -132,4 +144,6 @@ babyApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, MainSe
     isFirstOpen: true,
     isFirstDisabled: false
   };
+
+  
 });
