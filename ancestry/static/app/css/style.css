@@ -276,6 +276,11 @@ ul, li {
 .panel-group .panel {
     border:none;
     text-align: center;
+    box-shadow: none !important;
+}
+
+span.spinner-memories {
+    margin-top: -10px;
 }
 
 .panel-group .panel .panel-heading {

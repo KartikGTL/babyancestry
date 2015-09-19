@@ -1,10 +1,6 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 
-
-{# username: tuf000205792 #}
-{# password: 1234pass #}
-
 {% block content %}
 {% verbatim %}
 
@@ -40,19 +36,12 @@
                     We will automatically scan your family
                     history and create a list of name suggestions
                     for your new little one.</p>
+                    <p>To get started, simply log in to
+                    Family Search Database, where you will be
+                    momentarily re-routed from our site.</p>
                     <a ng-click="loginUser()" class="btn btn-lg btn-info">Get Started</a> 
                 </div>
             </div>
-
-            <div id="top-login" ng-show="loadingAncestors">
-                <div class="box-login">
-                    <p>
-                        Scanning your ancestors. This might take a minute or two...
-                    </p>
-                </div>
-            </div>
-
-
             <div id="content" ng-show="loggedIn">
                 <div class="container">
                     <div class="template-grid">
@@ -84,11 +73,17 @@
         <div class="modal-body">
           <div class="modal-template">
                 <accordion close-others="oneAtATime">
-                    <accordion-group ng-click="getMemories(item.fsObj, items.indexOf(item))" heading="" ng-repeat="item in items | orderObjectBy: 'memoriesCount' : true">
+                    <accordion-group heading="" ng-repeat="item in items | orderObjectBy: 'memoriesCount' : true">
                         <accordion-heading>
-                            <span class="glyphicon glyphicon-chevron-down" style="float:left;"></span> 
-                            {{ item.fsObj.$getDisplayName() }}
-                            <span class="spinner-memories" style="float:right;"></span> 
+                            <div style="text-align:center;" ng-click="getMemories(item.fsObj, items.indexOf(item))">
+                                <span class="glyphicon glyphicon-chevron-down" style="float:left;"></span> 
+                                {{ item.fsObj.$getDisplayName() }}
+                                <span class="spinner-memories" style="float:right;">
+                                    <div style="width: 50px; height:50px; border-radius: 50%; overflow:hidden;">
+                                        <img width="50" ng-src="{{item.portrait}}">
+                                    </div>
+                                </span>
+                            </div>
                         </accordion-heading>
                         <p class="lifesp"> 
                             {{ item.fsObj.$getBirthDate() }}
@@ -102,12 +97,11 @@
                         <p class="personrel"><em>{{ personRelation(item.fsObj) }}</em></p>
                         <!--<p><span ng-if="item.memoriesCount != 0">{{ item.memoriesCount }} Memories</span></p>-->
                         <div class="stories">
-
-
                             <div>
                               <div style="min-height: 200px">
-                                <carousel no-wrap="true">
-                                  <slide ng-repeat="story in item.memories" active="slide.active">
+                                
+                                <carousel interval="myInterval" no-wrap="noWrapSlides">
+                                  <slide ng-if="story.$getThumbnailUrl() != undefined" ng-repeat="story in item.memories" active="slide.active">
                                     <img ng-src="{{story.$getThumbnailUrl()}}" style="margin:auto;">
                                     <div class="carousel-caption">
                                       <h4 style="color:black;">{{story.$getTitle()}}</h4>

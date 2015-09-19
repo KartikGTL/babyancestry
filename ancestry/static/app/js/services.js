@@ -4,12 +4,12 @@
 
 babyApp.factory('MainService', ['$location', '$http', '$q', '$timeout', function($location, $http, $q, $timeout){
   var client = new FamilySearch({
-          client_id: 'a0T3000000BZ6ojEAD',
-          environment: 'sandbox',
-          redirect_uri: 'http://localhost:8000/fs/callback/',
-          // client_id: 'Q5YX-KQ5L-TJ3S-VXXJ-5XMV-KNDZ-LYD2-2B6Q',
-          // environment: 'production',
-          // redirect_uri: 'http://babyancestry.com/fs/callback/',
+          // client_id: 'a0T3000000BZ6ojEAD',
+          // environment: 'sandbox',
+          // redirect_uri: 'http://localhost:8000/fs/callback/',
+          client_id: 'Q5YX-KQ5L-TJ3S-VXXJ-5XMV-KNDZ-LYD2-2B6Q',
+          environment: 'production',
+          redirect_uri: 'http://babyancestry.com/fs/callback/',
           http_function: $http,
           deferred_function: $q.defer,
           timeout_function: $timeout,
@@ -32,10 +32,34 @@ babyApp.factory('MainService', ['$location', '$http', '$q', '$timeout', function
     ancestors: function(){
       return build;
     }, 
+    buildPortrait: function(firstName, arrayIndex, response){
+       build[firstName].persons[arrayIndex].portrait = response;
+    },
     buildMemories: function(firstName, arrayIndex, memoriesList){
       // This function would append the memories to the corresponding person with personId = pid
       build[firstName].persons[arrayIndex].memories = memoriesList;
       build[firstName].persons[arrayIndex].memoriesCount = memoriesList.length;
+    },
+    buildAllMemories: function(firstName){
+      for (var i = 0; i < build[firstName]['persons'].length; i++){
+        var p = build[firstName]['persons'][i];
+        client.getPersonMemoriesQuery(p.pid).then(function (response) {
+          var memoriesResp = response.getMemories();
+          p.memories = memoriesResp;
+          console.log('MEMORIES: ' + p);
+        });
+
+        client.getPersonPortraitUrl(p.pid, {
+              default: 'http://babyancestry.com/static/app/img/browsers/Male-avatar.png', 
+              followRedirect: true,
+          }).then(function(response) {
+          if (response){
+            p.portrait = response;
+          }
+          console.log("PORTRAIT: " + response);
+        });
+        console.log('YEAH: ' + p);
+      }
     },
     buildAncestors: function(persons){
       for (var i = 0; i < persons.length; i++){
@@ -52,6 +76,8 @@ babyApp.factory('MainService', ['$location', '$http', '$q', '$timeout', function
             person_obj['fsObj'] = person;
             person_obj['memories'] = [];
             person_obj['memoriesCount'] = 0;
+
+            person_obj['portrait'] = '/static/app/img/ajax-loader2.gif';
 
             build[firstName]['persons'].push(person_obj);
 
@@ -71,6 +97,8 @@ babyApp.factory('MainService', ['$location', '$http', '$q', '$timeout', function
               person_obj['fsObj'] = person;
               person_obj['memories'] = [];
               person_obj['memoriesCount'] = 0;
+
+              person_obj['portrait'] = '/static/app/img/ajax-loader2.gif';
 
               // Push it now!
               build[firstName]['persons'].push(person_obj);

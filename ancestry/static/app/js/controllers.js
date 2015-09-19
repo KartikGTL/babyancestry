@@ -8,24 +8,21 @@ babyApp.controller('MainCtrl', ['$scope','MainService', '$location', '$http', '$
   $scope.contactName = 'User';
   $scope.loggedIn = false;
   $scope.ancestorsList = [];
-  $scope.loadingAncestors = false;
 
   $scope.loginUser = function() {
     fs.getAccessToken().then(function(accessToken) {  
       fs.getCurrentUser().then(function(response) {
         $scope.loggedIn = true;
-        $scope.loadingAncestors = false;
-
+        
         currentUser = response.getUser();
         $scope.contactName = currentUser.contactName;
-        $scope.loadingAncestors = true;
+        
         fs.getAncestry(currentUser.personId, {
           generations:8,
           personDetails: true,
           marriageDetails: true,
           descendants: true,
         }).then(function(response){
-          $scope.loadingAncestors = false;
           $scope.ancestorsList = MainService.buildAncestors(response.getPersons());
         });
       });
@@ -36,9 +33,28 @@ babyApp.controller('MainCtrl', ['$scope','MainService', '$location', '$http', '$
     fs.invalidateAccessToken();
     $window.location.reload();
   };
-
+/*
+  $scope.buildAll = function(givenName){
+    MainService.buildAllMemories(givenName).then(function(data){
+        
+    });
+  }*/
   // Actions
   $scope.openModal = function(givenName) {
+    // for (var i = 0; i < $scope.ancestorsList[givenName].persons.length; i++){
+    //   var person = $scope.ancestorsList[givenName].persons[i];
+    //   // fs.getPersonMemoriesQuery(person.id).then(function (response) {
+    //   //   var memories = response.getMemories();
+    //   //   // MainService.buildAllMemories(givenName, person, memories);
+    //   // });
+    // }
+
+    // MainService.buildAllMemories(givenName);
+
+    /*fs.getPersonMemoriesQuery(person.id).then(function (response) {
+      var memories = response.getMemories();
+    });*/
+
     var modalInstance = $modal.open({
       animation: true,
       templateUrl: 'modalContent.html',
@@ -67,14 +83,24 @@ babyApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, MainSe
   $scope.ancestors = MainService.ancestors();
   
   // CAROUSEL
-  $scope.myInterval = 500;
-  $scope.noWrapSlides = true;
+  $scope.myInterval = 10000;
+  $scope.noWrapSlides = false;
 
   $scope.getMemories = function(person, arrayIndex){
     fs.getPersonMemoriesQuery(person.id).then(function (response) {
       var memories = response.getMemories();
       MainService.buildMemories(firstName, arrayIndex, memories);
-      console.log($scope.items);
+      console.log("GET MEMORIES: " + $scope.items);
+    });
+
+    fs.getPersonPortraitUrl(person.id, {
+          default: 'http://babyancestry.com/static/app/img/browsers/Male-avatar.png',
+          followRedirect: true,
+      }).then(function(response) {
+      if (response){
+        MainService.buildPortrait(firstName, arrayIndex, response);
+      }
+      console.log("PORTRAIT: " + response);
     });
   };
   
