@@ -7,6 +7,7 @@ babyApp.controller('MainCtrl', ['$scope','MainService', '$location', '$http', '$
 
   $scope.contactName = 'User';
   $scope.loggedIn = false;
+  $scope.loadingAncestors = false;
   $scope.ancestorsList = [];
 
   $scope.loginUser = function() {
@@ -16,6 +17,7 @@ babyApp.controller('MainCtrl', ['$scope','MainService', '$location', '$http', '$
         
         currentUser = response.getUser();
         $scope.contactName = currentUser.contactName;
+        $scope.loadingAncestors = true;
         
         fs.getAncestry(currentUser.personId, {
           generations:8,
@@ -23,6 +25,7 @@ babyApp.controller('MainCtrl', ['$scope','MainService', '$location', '$http', '$
           marriageDetails: true,
           descendants: true,
         }).then(function(response){
+          $scope.loadingAncestors = false;
           $scope.ancestorsList = MainService.buildAncestors(response.getPersons());
         });
       });
