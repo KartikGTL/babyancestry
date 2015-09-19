@@ -8,21 +8,24 @@ babyApp.controller('MainCtrl', ['$scope','MainService', '$location', '$http', '$
   $scope.contactName = 'User';
   $scope.loggedIn = false;
   $scope.ancestorsList = [];
+  $scope.loadingAncestors = false;
 
   $scope.loginUser = function() {
     fs.getAccessToken().then(function(accessToken) {  
       fs.getCurrentUser().then(function(response) {
         $scope.loggedIn = true;
-        
+        $scope.loadingAncestors = false;
+
         currentUser = response.getUser();
         $scope.contactName = currentUser.contactName;
-        
+        $scope.loadingAncestors = true;
         fs.getAncestry(currentUser.personId, {
           generations:8,
           personDetails: true,
           marriageDetails: true,
           descendants: true,
         }).then(function(response){
+          $scope.loadingAncestors = false;
           $scope.ancestorsList = MainService.buildAncestors(response.getPersons());
         });
       });

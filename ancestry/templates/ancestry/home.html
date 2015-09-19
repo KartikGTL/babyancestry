@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 
+
+{# username: tuf000205792 #}
+{# password: 1234pass #}
+
 {% block content %}
 {% verbatim %}
 
@@ -36,12 +40,19 @@
                     We will automatically scan your family
                     history and create a list of name suggestions
                     for your new little one.</p>
-                    <p>To get started, simply log in to
-                    Family Search Database, where you will be
-                    momentarily re-routed from our site.</p>
                     <a ng-click="loginUser()" class="btn btn-lg btn-info">Get Started</a> 
                 </div>
             </div>
+
+            <div id="top-login" ng-show="loadingAncestors">
+                <div class="box-login">
+                    <p>
+                        Scanning your ancestors. This might take a minute or two...
+                    </p>
+                </div>
+            </div>
+
+
             <div id="content" ng-show="loggedIn">
                 <div class="container">
                     <div class="template-grid">
