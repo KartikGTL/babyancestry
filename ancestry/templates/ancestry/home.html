@@ -30,6 +30,17 @@
                     </div>
                 </div>
             </div>
+            
+            <div id="top-login" ng-show="loadingAncestors">
+                <div class="box-login">
+                    <h2>
+                        Scanning your ancestors. <br>
+                        This might take a minute or two...
+                    </h2>
+                    <img width="50" ng-src="/static/app/img/ajax-loader2.gif" src="/static/app/img/ajax-loader2.gif">
+                </div>
+            </div>
+
             <div id="top-login" ng-hide="loggedIn">
                 <div class="box-login">
                     <p>Welcome to BabyAncestry.com!
@@ -43,15 +54,6 @@
                 </div>
             </div>
 
-            <div id="top-login" ng-show="loadingAncestors">
-                <div class="box-login">
-                    <h2>
-                        Scanning your ancestors. <br>
-                        This might take a minute or two...
-                    </h2>
-                    <img width="50" ng-src="/static/app/img/ajax-loader2.gif" src="/static/app/img/ajax-loader2.gif">
-                </div>
-            </div>
 
             <div id="content" ng-show="loggedIn">
                 <div class="container">

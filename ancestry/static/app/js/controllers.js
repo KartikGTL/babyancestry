@@ -11,7 +11,8 @@ babyApp.controller('MainCtrl', ['$scope','MainService', '$location', '$http', '$
   $scope.ancestorsList = [];
 
   $scope.loginUser = function() {
-    fs.getAccessToken().then(function(accessToken) {  
+    $scope.loadingAncestors = true;
+    fs.getAccessToken().then(function(accessToken) {
       fs.getCurrentUser().then(function(response) {
         $scope.loggedIn = true;
         
