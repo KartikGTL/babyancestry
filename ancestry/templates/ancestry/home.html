@@ -46,7 +46,8 @@
             <div id="top-login" ng-show="loadingAncestors">
                 <div class="box-login">
                     <h2>
-                        Scanning your ancestors. This might take a minute or two...
+                        Scanning your ancestors. <br>
+                        This might take a minute or two...
                     </h2>
                     <img width="50" ng-src="/static/app/img/ajax-loader2.gif" src="/static/app/img/ajax-loader2.gif">
                 </div>
@@ -61,9 +62,12 @@
                                 <ul>
                                     <li class="{{obj.persons[0].fsObj.$getDisplayGender()}}" ng-repeat="obj in ancestorsList | orderObjectBy: 'personsCount' : true">
                                         <a href="" data-toggle="modal" ng-click="openModal(obj.category)"> 
-                                            <p class="ancestorName">
+                                            <span class="ancestorName">
                                                {{ obj.category }}
-                                            </p>
+                                            </span>
+                                            <span>
+                                                ({{ obj.personsCount + (obj.personsCount > 1 ? ' people' : ' person') }} )
+                                            </span>
                                         </a>
                                     </li>
                                 </ul>
