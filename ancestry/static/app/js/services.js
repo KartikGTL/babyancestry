@@ -88,7 +88,7 @@ babyApp.factory('MainService', ['$location', '$http', '$q', '$timeout', function
                     person_obj['fsObj'] = person;
                     person_obj['memories'] = [];
                     person_obj['memoriesCount'] = 0;
-                    if(person.$getBirth())
+                    if(person.$getBirth() && person.$getBirth().date)
                         person_obj['birth'] = new Date(person.$getBirth().date.formal);
                     else
                         person_obj['birth'] = null;
