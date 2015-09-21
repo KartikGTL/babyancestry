@@ -1,3 +1,4 @@
+'use strict';
 //---------------
 // Controllers
 //---------------
@@ -16,7 +17,7 @@ babyApp.controller('MainCtrl', ['$scope', 'MainService', '$location', '$http', '
             fs.getCurrentUser().then(function (response) {
                 $scope.loggedIn = true;
 
-                currentUser = response.getUser();
+                var currentUser = response.getUser();
                 $scope.contactName = currentUser.contactName;
                 $scope.loadingAncestors = true;
 
@@ -178,5 +179,9 @@ babyApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, MainSe
         isFirstDisabled: false
     };
 
+    // Send off the requests to load all the memories
+    for(var i=0; i<items.length; i++){
+        $scope.getMemories(items[i].fsObj, i);
+    }
 
 });

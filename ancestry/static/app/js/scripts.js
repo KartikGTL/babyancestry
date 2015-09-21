@@ -1,3 +1,5 @@
+'use strict';
+
 // Action Plan
 $(document).ready(function () {
     $("#boy-names").click(function () {
