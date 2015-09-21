@@ -92,12 +92,13 @@
         <div class="modal-body">
             <div class="modal-template">
                 <accordion close-others="oneAtATime">
-                    <accordion-group heading="" ng-repeat="item in items | orderObjectBy: 'memoriesCount' : true">
+                    <accordion-group heading="" ng-repeat="item in items | orderObjectBy: 'birth' : true">
                         <accordion-heading>
                             <div style="text-align:center;" ng-click="getMemories(item.fsObj, items.indexOf(item))">
                                 <span class="glyphicon glyphicon-chevron-down" style="float:left;"></span>
                                 {{ item.fsObj.$getDisplayName() }}
                                 <span class="spinner-memories" style="float:right;">
+
                                     <div style="width: 50px; height:50px; border-radius: 50%; overflow:hidden;">
                                         <img width="50" ng-src="{{item.portrait}}">
                                     </div>
