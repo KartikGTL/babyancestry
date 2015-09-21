@@ -24,7 +24,7 @@ babyApp.controller('MainCtrl', ['$scope','MainService', '$location', '$http', '$
           generations:8,
           personDetails: true,
           marriageDetails: true,
-          descendants: true,
+          descendants: false,
         }).then(function(response){
           $scope.loadingAncestors = false;
           $scope.ancestorsList = MainService.buildAncestors(response.getPersons());
