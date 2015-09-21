@@ -4,7 +4,7 @@
 <head>
     <title>Family History Baby Names Recommender</title>
 
-    <link id="favicon" rel="shortcut icon" type="image/png" href="/static/app/img/elephant.png" />
+    <link id="favicon" rel="shortcut icon" type="image/png" href="/static/app/img/elephant.png"/>
 
     <!-- Main Styles -->
     <link rel="stylesheet" type="text/css" href="{% static 'app/css/bootstrap.min.css' %}">
@@ -12,7 +12,7 @@
     <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,700' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Parisienne' rel='stylesheet' type='text/css'>
-    
+
     <!-- Scripts -->
     <script src="{% static 'app/components/jquery.js' %}"></script>
     <script src="https://cdn.jsdelivr.net/familysearch-javascript-sdk/1.0.0/familysearch-javascript-sdk.min.js"></script>
@@ -32,21 +32,21 @@
     <script type="text/javascript" src="{% static 'app/components/spin.js' %}"></script>
 
     <!-- Angular JS Scripts -->
-    <script src="{% static 'app/js/app.js'%}"></script>
-    <script src="{% static 'app/js/controllers.js'%}"></script>
-    <script src="{% static 'app/js/services.js'%}"></script>
+    <script src="{% static 'app/js/app.js' %}"></script>
+    <script src="{% static 'app/js/controllers.js' %}"></script>
+    <script src="{% static 'app/js/services.js' %}"></script>
 
     <script src="{% static 'app/js/scripts.js' %}"></script>
-    
+
 </head>
 
 <body ng-app="babyApp">
-    {% block content %}{% endblock %}
-    
-    <div id="footer">
-        <div class="trademark">
-            <img src="{% static 'app/img/elephant.png' %}">
-        </div>
+{% block content %}{% endblock %}
+
+<div id="footer">
+    <div class="trademark">
+        <img src="{% static 'app/img/elephant.png' %}">
     </div>
+</div>
 </body>
 </html>

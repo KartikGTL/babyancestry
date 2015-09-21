@@ -2,7 +2,7 @@
 // Services
 //---------------
 
-babyApp.factory('MainService', ['$location', '$http', '$q', '$timeout', function($location, $http, $q, $timeout){
+babyApp.factory('MainService', ['$location', '$http', '$q', '$timeout', function ($location, $http, $q, $timeout) {
     var client = new FamilySearch({
         // DEV SETTINGS
         client_id: 'a0T3000000BZ6ojEAD',
@@ -22,7 +22,7 @@ babyApp.factory('MainService', ['$location', '$http', '$q', '$timeout', function
     });
     var build = {};
 
-    var getFirstName = function(name){
+    var getFirstName = function (name) {
         var first = '';
         if (name != undefined)
             first = name.split(' ')[0];
@@ -32,19 +32,19 @@ babyApp.factory('MainService', ['$location', '$http', '$q', '$timeout', function
     };
 
     return {
-        ancestors: function(){
+        ancestors: function () {
             return build;
         },
-        buildPortrait: function(firstName, arrayIndex, response){
+        buildPortrait: function (firstName, arrayIndex, response) {
             build[firstName].persons[arrayIndex].portrait = response;
         },
-        buildMemories: function(firstName, arrayIndex, memoriesList){
+        buildMemories: function (firstName, arrayIndex, memoriesList) {
             // This function would append the memories to the corresponding person with personId = pid
             build[firstName].persons[arrayIndex].memories = memoriesList;
             build[firstName].persons[arrayIndex].memoriesCount = memoriesList.length;
         },
-        buildAllMemories: function(firstName){
-            for (var i = 0; i < build[firstName]['persons'].length; i++){
+        buildAllMemories: function (firstName) {
+            for (var i = 0; i < build[firstName]['persons'].length; i++) {
                 var p = build[firstName]['persons'][i];
                 client.getPersonMemoriesQuery(p.pid).then(function (response) {
                     var memoriesResp = response.getMemories();
@@ -55,8 +55,8 @@ babyApp.factory('MainService', ['$location', '$http', '$q', '$timeout', function
                 client.getPersonPortraitUrl(p.pid, {
                     default: 'http://babyancestry.com/static/app/img/browsers/Male-avatar.png',
                     followRedirect: true,
-                }).then(function(response) {
-                    if (response){
+                }).then(function (response) {
+                    if (response) {
                         p.portrait = response;
                     }
                     console.log("PORTRAIT: " + response);
@@ -67,8 +67,8 @@ babyApp.factory('MainService', ['$location', '$http', '$q', '$timeout', function
 
         // When the response comes back from familysearch with all our ancestors,
         // this function turns the raw data into lists of first names.
-        buildAncestors: function(persons){
-            for (var i = 0; i < persons.length; i++){
+        buildAncestors: function (persons) {
+            for (var i = 0; i < persons.length; i++) {
 
                 var person = persons[i];
                 var firstName = getFirstName(person.$getGivenName());
@@ -99,7 +99,7 @@ babyApp.factory('MainService', ['$location', '$http', '$q', '$timeout', function
             return build;
         },
 
-        fsClient: function(){
+        fsClient: function () {
             return client;
         }
     }
