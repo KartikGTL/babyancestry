@@ -98,8 +98,11 @@ babyApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, MainSe
             console.log("GET MEMORIES: " + $scope.items);
         });
 
+        var defaultPortrait = person.$getDisplayGender() == 'Male' ?
+            'http://babyancestry.com/static/app/img/browsers/Male-avatar.png' :
+            'http://babyancestry.com/static/app/img/browsers/Female-avatar.png';
         fs.getPersonPortraitUrl(person.id, {
-            default: 'http://babyancestry.com/static/app/img/browsers/Male-avatar.png',
+            default: defaultPortrait,
             followRedirect: true,
         }).then(function (response) {
             if (response) {
