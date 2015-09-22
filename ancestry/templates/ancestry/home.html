@@ -165,8 +165,9 @@
                         <div class="find">
                             <p><a href="">{{ item.fsObj.$getGivenName() }} at behindthename.com</a></p>
 
-                            <p><a href="https://familysearch.org/tree/#view=ancestor&person=" + item.fsObj.id +"&section=details"
-                                target="_blank">View on familysearch.com</a></p>
+                            <p><a href="{{ 'https://familysearch.org/tree/#view=ancestor&person=' + item.fsObj.id + '&section=details' }}" target="_blank">
+                                View on familysearch.com
+                            </a></p>
                         </div>
                     </accordion-group>
                 </accordion>

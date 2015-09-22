@@ -128,7 +128,7 @@ babyApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, MainSe
         if (gender == 'Male')
             genderEq = 'father';
         else
-            genderEq = 'mother'
+            genderEq = 'mother';
 
         if (order != undefined) {
 
