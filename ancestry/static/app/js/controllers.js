@@ -114,55 +114,39 @@ babyApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, MainSe
 
 
     $scope.personRelation = function (item) {
-        var name = item.$getGivenName();
+        // Get the person's relation using the Ahnentafel method:
+        // https://en.wikipedia.org/wiki/Ahnentafel
         var order = item.$getAscendancyNumber();
+
         var gender = item.$getDisplayGender();
+        var name = item.$getGivenName();
         var sentence = "";
         var genderEq;
 
         if (gender == 'Male')
-            genderEq = 'Father';
+            genderEq = 'father';
         else
-            genderEq = 'Mother'
+            genderEq = 'mother'
 
         if (order != undefined) {
 
-            // Determine the person's relation to you through the ahfentel method.
-            // If order is 1 - It refers to you.
-            if (order == 1) {
-                return "This is you!";
-            } else if (order == 2) {
-                sentence = name + " is your " + genderEq;
-                return sentence + "!";
-            } else if (order == 3) {
-                sentence = name + " is your " + genderEq;
-                return sentence + "!";
-            } else if (order >= 4) {
-                var relation = "";
-                var count = order;
-                var howFar = 0;
-                while (count > 2) {
-                    if (count % 2 == 0) {
-                        count = count / 2;
-                        howFar++;
-                    } else {
-                        count = (count - 1) / 2;
-                        howFar++;
-                    }
-                }
+            // The log(2) of the Ahnentafel method gives the number of generations back
+            // the ancestor is.
+            var generation = Math.floor(Math.log(order) / Math.log(2)); // log base 2
 
-                relation = relation + " great";
-                var times = 1;
-                for (var k = 1; k <= howFar - 2; k++) {
-                    times++;
-                }
-                if (times != 1)
-                    relation = relation + "(" + times + "x)";
-                relation = relation + " grand " + genderEq;
-                sentence = name + " is your " + relation + "!";
-                return sentence;
-                // End of if. Should have returned sentence.
+            if (generation == 0) {
+                sentence = "This is you!";
+            } else if (generation == 1) {
+                sentence = name + " is your " + genderEq + "!";
+            } else if (generation == 2) {
+                sentence = name + " is your grand" + genderEq;
+            }else if (generation == 3) {
+                sentence = name + " is your great grand" + genderEq;
+            } else if (generation >= 4) {
+                var greats = order - 2;
+                sentence = name + " is your (" + greats + "x) great grand" + genderEq;
             }
+            return sentence
         } else {
             return "";
         }
