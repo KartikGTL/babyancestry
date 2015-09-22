@@ -121,7 +121,7 @@ babyApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, MainSe
         var order = item.$getAscendancyNumber();
 
         var gender = item.$getDisplayGender();
-        var name = item.$getGivenName();
+        var name = item.$getGivenName() + " " + order;
         var sentence = "";
         var genderEq;
 
