@@ -10,6 +10,7 @@ babyApp.controller('MainCtrl', ['$scope', 'MainService', '$location', '$http', '
     $scope.loggedIn = false;
     $scope.loadingAncestors = false;
     $scope.ancestorsList = [];
+    $scope.ancestorsLoaded = false;
 
     $scope.loginUser = function () {
         $scope.loadingAncestors = true;
@@ -29,6 +30,7 @@ babyApp.controller('MainCtrl', ['$scope', 'MainService', '$location', '$http', '
                 }).then(function (response) {
                     $scope.loadingAncestors = false;
                     $scope.ancestorsList = MainService.buildAncestors(response.getPersons());
+                    $scope.ancestorsLoaded = true;
                 });
             });
         });
