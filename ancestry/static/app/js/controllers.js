@@ -118,7 +118,7 @@ babyApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, MainSe
     $scope.personRelation = function (item) {
         // Get the person's relation using the Ahnentafel method:
         // https://en.wikipedia.org/wiki/Ahnentafel
-        var order = item.$getAscendancyNumber();
+        var order = Math.floor(item.$getAscendancyNumber());
 
         var gender = item.$getDisplayGender();
         var name = item.$getGivenName() + " " + order;
