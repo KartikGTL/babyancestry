@@ -26,7 +26,7 @@ babyApp.controller('MainCtrl', ['$scope', 'MainService', '$location', '$http', '
                     generations: 8,
                     personDetails: true,
                     marriageDetails: true,
-                    descendants: false,
+                    descendants: false
                 }).then(function (response) {
                     $scope.loadingAncestors = false;
                     $scope.ancestorsList = MainService.buildAncestors(response.getPersons());
@@ -93,25 +93,31 @@ babyApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, MainSe
     $scope.myInterval = 10000;
     $scope.noWrapSlides = false;
 
-    $scope.getMemories = function (person, arrayIndex) {
-        fs.getPersonMemoriesQuery(person.id).then(function (response) {
-            var memories = response.getMemories();
-            MainService.buildMemories(firstName, arrayIndex, memories);
-            console.log("GET MEMORIES: " + $scope.items);
-        });
+    $scope.getMemories = function (item, arrayIndex) {
+        if (!item.memoriesLoaded) {
 
-        var defaultPortrait = person.$getDisplayGender() == 'Male' ?
-            'http://babyancestry.com/static/app/img/browsers/Male-avatar.png' :
-            'http://babyancestry.com/static/app/img/browsers/Female-avatar.png';
-        fs.getPersonPortraitUrl(person.id, {
-            default: defaultPortrait,
-            followRedirect: true,
-        }).then(function (response) {
-            if (response) {
-                MainService.buildPortrait(firstName, arrayIndex, response);
-            }
-            console.log("PORTRAIT: " + response);
-        });
+            var person = item.fsObj;
+            fs.getPersonMemoriesQuery(person.id).then(function (response) {
+                var memories = response.getMemories();
+                MainService.buildMemories(firstName, arrayIndex, memories);
+                console.log("GET MEMORIES: " + $scope.items);
+            });
+
+            var defaultPortrait = person.$getDisplayGender() == 'Male' ?
+                'http://babyancestry.com/static/app/img/browsers/Male-avatar.png' :
+                'http://babyancestry.com/static/app/img/browsers/Female-avatar.png';
+            fs.getPersonPortraitUrl(person.id, {
+                default: defaultPortrait,
+                followRedirect: true,
+            }).then(function (response) {
+                if (response) {
+                    MainService.buildPortrait(firstName, arrayIndex, response);
+                }
+                console.log("PORTRAIT: " + response);
+            });
+
+            item.memoriesLoaded = true;
+        }
     };
 
 
@@ -170,7 +176,7 @@ babyApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, MainSe
 
     // Send off the requests to load all the memories
     for(var i=0; i<items.length; i++){
-        $scope.getMemories(items[i].fsObj, i);
+        $scope.getMemories(items[i], i);
     }
 
 });

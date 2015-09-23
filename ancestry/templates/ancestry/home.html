@@ -94,7 +94,7 @@
                 <accordion close-others="oneAtATime">
                     <accordion-group heading="" ng-repeat="item in items | orderObjectBy: 'ahnentafel_number' : false">
                         <accordion-heading>
-                            <div style="text-align:center;" ng-click="getMemories(item.fsObj, items.indexOf(item))">
+                            <div style="text-align:center;" ng-click="getMemories(item, items.indexOf(item)); item.fullDetailsClicked = true;">
                                 <span class="glyphicon glyphicon-chevron-down" style="float:left;"></span>
                                 {{ item.fsObj.$getDisplayName() }}
                                 <span class="spinner-memories" style="float:right;">
@@ -107,69 +107,71 @@
                                 </span>
                             </div>
                         </accordion-heading>
-                        <p class="lifesp">
-                            {{ item.fsObj.$getBirthDate() }}
-                            <span ng-if="item.fsObj.living == true">- Living</span>
-                            <span ng-if="item.fsObj.living == false">
-                                <span ng-if"item.fsObj.$getDeathDate() != undefined">
-                                    - {{ item.fsObj.$getDeathDate() }}
+                        <div ng-if="item.fullDetailsClicked">
+                            <p class="lifesp">
+                                {{ item.fsObj.$getBirthDate() }}
+                                <span ng-if="item.fsObj.living == true">- Living</span>
+                                <span ng-if="item.fsObj.living == false">
+                                    <span ng-if"item.fsObj.$getDeathDate() != undefined">
+                                        - {{ item.fsObj.$getDeathDate() }}
+                                    </span>
                                 </span>
-                            </span>
-                        </p>
+                            </p>
 
-                        <p class="personrel"><em>{{ personRelation(item.fsObj) }}</em></p>
-                        <!--<p><span ng-if="item.memoriesCount != 0">{{ item.memoriesCount }} Memories</span></p>-->
-                        <div class="stories">
-                            <div>
-                                <div style="min-height: 200px">
+                            <p class="personrel"><em>{{ personRelation(item.fsObj) }}</em></p>
+                            <!--<p><span ng-if="item.memoriesCount != 0">{{ item.memoriesCount }} Memories</span></p>-->
+                            <div class="stories">
+                                <div>
+                                    <div style="min-height: 200px">
 
-                                    <carousel interval="myInterval" no-wrap="noWrapSlides">
-                                        <slide ng-if="story.$getThumbnailUrl() != undefined"
-                                               ng-repeat="story in item.memories" active="slide.active">
-                                            <img ng-src="{{story.$getThumbnailUrl()}}" style="margin:auto;">
+                                        <carousel interval="myInterval" no-wrap="noWrapSlides">
+                                            <slide ng-if="story.$getThumbnailUrl() != undefined"
+                                                   ng-repeat="story in item.memories" active="slide.active">
+                                                <img ng-src="{{story.$getThumbnailUrl()}}" style="margin:auto;">
 
-                                            <div class="carousel-caption">
-                                                <h4 style="color:black;">{{story.$getTitle()}}</h4>
+                                                <div class="carousel-caption">
+                                                    <h4 style="color:black;">{{story.$getTitle()}}</h4>
 
-                                                <p style="color:black;">{{story.$getDescription()}}</p>
-                                            </div>
-                                        </slide>
-                                    </carousel>
+                                                    <p style="color:black;">{{story.$getDescription()}}</p>
+                                                </div>
+                                            </slide>
+                                        </carousel>
+                                    </div>
                                 </div>
+
+
+                                <!--<ul>
+                                    <li ng-repeat="story in item.memories" style="display:inline-block;">
+                                        <div ng-if="((story.mediaType == 'image/png') || (story.mediaType == 'image/jpeg'))">
+                                            <div class="panel panel-custom panel-default">
+                                              <div class="panel-body" style="padding:0;">
+                                                <img src="{{ story.$getThumbnailUrl() }}" height="200">
+                                              </div>
+                                            </div>
+
+                                        </div>
+                                        <div ng-if="story.mediaType == 'text/plain'">
+                                            <div class="panel panel-custom panel-default">
+                                              <div class="panel-body">
+                                                <p>{{story.$getTitle()}}</p>
+                                                <p>{{memory.$getDescription()}}</p>
+                                              </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>-->
                             </div>
+                            <br>
 
+                            <div class="find">
+                                <p><a href="{{ 'http://www.behindthename.com/names/search.php?terms=' +  item.fsObj.$getGivenName() }}" target="_blank">
+                                    {{ item.fsObj.$getGivenName() }} at behindthename.com
+                                </a></p>
 
-                            <!--<ul>
-                                <li ng-repeat="story in item.memories" style="display:inline-block;">
-                                    <div ng-if="((story.mediaType == 'image/png') || (story.mediaType == 'image/jpeg'))">
-                                        <div class="panel panel-custom panel-default">
-                                          <div class="panel-body" style="padding:0;">
-                                            <img src="{{ story.$getThumbnailUrl() }}" height="200"> 
-                                          </div>
-                                        </div>
-                                        
-                                    </div>
-                                    <div ng-if="story.mediaType == 'text/plain'">
-                                        <div class="panel panel-custom panel-default">
-                                          <div class="panel-body">
-                                            <p>{{story.$getTitle()}}</p>
-                                            <p>{{memory.$getDescription()}}</p>
-                                          </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>-->
-                        </div>
-                        <br>
-
-                        <div class="find">
-                            <p><a href="{{ 'http://www.behindthename.com/names/search.php?terms=' +  item.fsObj.$getGivenName() }}" target="_blank">
-                                {{ item.fsObj.$getGivenName() }} at behindthename.com
-                            </a></p>
-
-                            <p><a href="{{ 'https://familysearch.org/tree/#view=ancestor&person=' + item.fsObj.id + '&section=details' }}" target="_blank">
-                                View on familysearch.com
-                            </a></p>
+                                <p><a href="{{ 'https://familysearch.org/tree/#view=ancestor&person=' + item.fsObj.id + '&section=details' }}" target="_blank">
+                                    View on familysearch.com
+                                </a></p>
+                            </div>
                         </div>
                     </accordion-group>
                 </accordion>
