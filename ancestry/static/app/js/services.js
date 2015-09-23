@@ -88,10 +88,7 @@ babyApp.factory('MainService', ['$location', '$http', '$q', '$timeout', function
                     person_obj['fsObj'] = person;
                     person_obj['memories'] = [];
                     person_obj['memoriesCount'] = 0;
-                    if(person.$getBirth() && person.$getBirth().date)
-                        person_obj['birth'] = new Date(person.$getBirth().date.formal);
-                    else
-                        person_obj['birth'] = new Date(1, 1, 1);
+                    person_obj['ahnentafel_number'] = Math.floor(person.$getAscendancyNumber());
 
                     person_obj['portrait'] = '/static/app/img/ajax-loader2.gif';
 
