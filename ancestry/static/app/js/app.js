@@ -1,5 +1,6 @@
 'use strict';
-var babyApp = angular.module('babyApp', ['ngRoute', 'ngCookies', 'ui.bootstrap']);
+
+var babyApp = angular.module('babyApp', ['ngRoute', 'ngCookies', 'ui.bootstrap', 'ngOrderObjectBy']);
 
 //---------------
 // Routes

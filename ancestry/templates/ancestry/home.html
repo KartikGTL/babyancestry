@@ -65,7 +65,7 @@
                                 <div id="anc-spinner"></div>
                                 <ul>
                                     <li class="{{obj.persons[0].fsObj.$getDisplayGender()}}"
-                                        ng-repeat="obj in ancestorsList">
+                                        ng-repeat="obj in ancestorsList | orderObjectBy: 'personsCount' : true">
                                         <a href="" data-toggle="modal" ng-click="openModal(obj.category)"> 
                                             <span class="ancestorName">
                                                {{ obj.category }}
@@ -92,7 +92,7 @@
         <div class="modal-body">
             <div class="modal-template">
                 <accordion close-others="oneAtATime">
-                    <accordion-group heading="" ng-repeat="item in items">
+                    <accordion-group heading="" ng-repeat="item in items | orderObjectBy: 'ahnentafel_number' : false">
                         <accordion-heading>
                             <div style="text-align:center;" ng-click="getMemories(item.fsObj, items.indexOf(item))">
                                 <span class="glyphicon glyphicon-chevron-down" style="float:left;"></span>

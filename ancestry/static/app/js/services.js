@@ -95,6 +95,7 @@ babyApp.factory('MainService', ['$location', '$http', '$q', '$timeout', function
                     build[firstName]['persons'].push(person_obj);
                 }
             }
+
             return build;
         },
 
