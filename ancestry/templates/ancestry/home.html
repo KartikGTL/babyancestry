@@ -102,7 +102,7 @@
                                         {{ item.memoriesCount }} Memories
                                     </div> -->
                                     <span style="width: 50px; height:50px; border-radius: 50%; overflow:hidden;">
-                                        <img width="50" ng-src="{{item.portrait}}">
+                                        <img ng-src="{{item.portrait}}" style="width: auto; max-height: 50px;">
                                     </span>
                                 </span>
                             </div>
@@ -163,7 +163,9 @@
                         <br>
 
                         <div class="find">
-                            <p><a href="">{{ item.fsObj.$getGivenName() }} at behindthename.com</a></p>
+                            <p><a href="{{ 'http://www.behindthename.com/names/search.php?terms=' +  item.fsObj.$getGivenName() }}" target="_blank">
+                                {{ item.fsObj.$getGivenName() }} at behindthename.com
+                            </a></p>
 
                             <p><a href="{{ 'https://familysearch.org/tree/#view=ancestor&person=' + item.fsObj.id + '&section=details' }}" target="_blank">
                                 View on familysearch.com
