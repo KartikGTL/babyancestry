@@ -121,7 +121,7 @@ babyApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, MainSe
         var order = Math.floor(item.$getAscendancyNumber());
 
         var gender = item.$getDisplayGender();
-        var name = item.$getGivenName() + " " + order;
+        var name = item.$getGivenName();
         var sentence = "";
         var genderEq;
 
@@ -145,7 +145,7 @@ babyApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, MainSe
             }else if (generation == 3) {
                 sentence = name + " is your great grand" + genderEq;
             } else if (generation >= 4) {
-                var greats = order - 2;
+                var greats = generation - 2;
                 sentence = name + " is your (" + greats + "x) great grand" + genderEq;
             }
             return sentence
