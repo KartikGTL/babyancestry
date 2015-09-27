@@ -8,4 +8,5 @@ urlpatterns = [
     
     url(r'^', include('ancestry.urls', namespace="ancestry")),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^feedback/$', 'ancestry.views.feedback', name='feedback'),
 ]

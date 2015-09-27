@@ -12,3 +12,6 @@ def home(request):
     """
    
     return render(request, 'ancestry/home.html')
+
+def feedback(request):
+    return render(request, 'ancestry/feedback.html')
