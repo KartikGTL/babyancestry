@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 
+{# Multiple Modals: http://plnkr.co/edit/KSsewObNMCc5MlE1Uz77?p=preview #}
+
+
 {% block content %}
     {% verbatim %}
 
@@ -29,6 +32,7 @@
                         <a class="btn btn-default" id="girl-names" href="">Girl Names</a>
                         <a class="btn btn-default active" id="all-names" href="">All Names</a>
                     </div>
+                    <a class="btn btn-default" id="about-baby-ancestry" href="" ng-click="showAboutModal();">About Baby Ancestry</a>
                 </div>
             </div>
 

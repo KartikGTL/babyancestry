@@ -82,6 +82,20 @@ babyApp.controller('MainCtrl', ['$scope', 'MainService', '$location', '$http', '
             $log.info('Modal dismissed at: ' + new Date());
         });
     };
+
+
+    $scope.showAboutModal = function(){
+        var modalInstance = $modal.open({
+            templateUrl : '/static/app/html/about_modal.html',
+            controller : 'AboutModalCtrl',
+        });
+
+        modalInstance.result.then(function(data) {
+            $scope.name = data;
+        });
+    };
+
+
 }]);
 
 babyApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, MainService, items, firstName) {
@@ -178,5 +192,10 @@ babyApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, MainSe
     for(var i=0; i<items.length; i++){
         $scope.getMemories(items[i], i);
     }
+
+});
+
+
+babyApp.controller('AboutModalCtrl', function($scope, $modalInstance, $modal) {
 
 });
