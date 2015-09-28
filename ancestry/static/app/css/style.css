@@ -283,9 +283,16 @@ span.spinner-memories {
     margin-top: -10px;
 }
 
+
+.panel-heading .panel-title .panel-title-wrap {
+    display: flex;
+}
+
 .panel-group .panel .panel-heading {
     background: transparent;
     border: 0;
+    height: auto !important;
+    min-height: 80px;
 }
 
 .panel-group .panel .panel-heading h4{
@@ -295,7 +302,7 @@ span.spinner-memories {
 }
 
 .panel-group .panel .panel-heading h4 span{
-    text-align: left !important;
+    text-align: center !important;
 }
 
 
