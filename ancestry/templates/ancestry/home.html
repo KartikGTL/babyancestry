@@ -102,8 +102,8 @@
                             <div style="text-align:center;" ng-click="getMemories(item, items.indexOf(item)); item.fullDetailsClicked = true;">
                                 <div class="panel-title-wrap"> 
                                     <span class="glyphicon glyphicon-chevron-down" style="width:10%"></span>
-                                    <span>{{ item.fsObj.$getDisplayName() }}</span>
-                                    <span class="spinner-memories" style="width: 35%">
+                                    <span style="text-align:left;">{{ item.fsObj.$getDisplayName() }}</span>
+                                    <span class="spinner-memories" style="width: 30%; text-align:center">
                                         <div style="font-size: 10pt; text-transform: capitalize;" ng-show="item.memoriesCount > 0">
                                             {{ item.memoriesCount + (item.memoriesCount == 1 ? " Memory" : " Memories") }}
                                         </div>&nbsp;
