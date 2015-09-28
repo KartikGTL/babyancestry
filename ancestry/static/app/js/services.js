@@ -66,6 +66,7 @@ babyApp.factory('MainService', ['$location', '$http', '$q', '$timeout', function
         // When the response comes back from familysearch with all our ancestors,
         // this function turns the raw data into lists of first names.
         buildAncestors: function (persons) {
+            var numPersonsUsed = 0;
             for (var i = 0; i < persons.length; i++) {
 
                 var person = persons[i];
@@ -95,9 +96,11 @@ babyApp.factory('MainService', ['$location', '$http', '$q', '$timeout', function
                     person_obj['portrait'] = '/static/app/img/ajax-loader2.gif';
 
                     build[firstName]['persons'].push(person_obj);
+                    numPersonsUsed++;
                 }
             }
-
+            console.log(persons.length + " persons retrieved from familysearch");
+            console.log(numPersonsUsed + " persons used");
             return build;
         },
 
