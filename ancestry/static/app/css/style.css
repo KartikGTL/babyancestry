@@ -281,11 +281,19 @@ ul, li {
 
 span.spinner-memories {
     margin-top: -10px;
-}
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+}   
 
 
 .panel-heading .panel-title .panel-title-wrap {
+    display: -webkit-flex;
     display: flex;
+    -webkit-justify-content:  space-between;
+    justify-content: space-between;
 }
 
 .panel-group .panel .panel-heading {
