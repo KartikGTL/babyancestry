@@ -126,11 +126,9 @@
                             </p>
 
                             <p class="personrel"><em>{{ personRelation(item.fsObj) }}</em></p>
-                            <!--<p><span ng-if="item.memoriesCount != 0">{{ item.memoriesCount }} Memories</span></p>-->
                             <div class="stories">
-                                <div>
+                               <!--<div>
                                     <div style="min-height: 200px">
-
                                         <carousel interval="myInterval" no-wrap="noWrapSlides">
                                             <slide ng-if="story.$getThumbnailUrl() != undefined"
                                                    ng-repeat="story in item.memories" active="slide.active">
@@ -144,10 +142,9 @@
                                             </slide>
                                         </carousel>
                                     </div>
-                                </div>
+                                </div>-->
 
-
-                                <!--<ul>
+                                <ul>
                                     <li ng-repeat="story in item.memories" style="display:inline-block;">
                                         <div ng-if="((story.mediaType == 'image/png') || (story.mediaType == 'image/jpeg'))">
                                             <div class="panel panel-custom panel-default">
@@ -155,7 +152,6 @@
                                                 <img src="{{ story.$getThumbnailUrl() }}" height="200">
                                               </div>
                                             </div>
-
                                         </div>
                                         <div ng-if="story.mediaType == 'text/plain'">
                                             <div class="panel panel-custom panel-default">
@@ -166,7 +162,7 @@
                                             </div>
                                         </div>
                                     </li>
-                                </ul>-->
+                                </ul>
                             </div>
                             <br>
 
