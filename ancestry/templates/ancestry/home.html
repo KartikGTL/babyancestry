@@ -94,7 +94,7 @@
     </script>
 
     <script type="text/ng-template" id="modalContent.html">
-        <div class="modal-body">
+        <div class="modal-body modal-custom">
             <div class="modal-template">
                 <accordion close-others="oneAtATime">
                     <accordion-group heading="" ng-repeat="item in items | orderObjectBy: 'ahnentafel_number' : false">
@@ -147,18 +147,17 @@
                                 <ul>
                                     <li ng-repeat="story in item.memories" style="display:inline-block;">
                                         <div ng-if="((story.mediaType == 'image/png') || (story.mediaType == 'image/jpeg'))">
-                                            <div class="panel panel-custom panel-default">
-                                              <div class="panel-body" style="padding:0;">
-                                                <img src="{{ story.$getThumbnailUrl() }}" height="200">
+                                            <div class="photo-box">
+                                              <div class="photo">
+                                                <img src="{{ story.$getThumbnailUrl() }}">
                                               </div>
+                                              <div class="photo-box-title">{{story.$getTitle()}} - {{memory.$getDescription()}}</div>
                                             </div>
                                         </div>
                                         <div ng-if="story.mediaType == 'text/plain'">
-                                            <div class="panel panel-custom panel-default">
-                                              <div class="panel-body">
-                                                <p>{{story.$getTitle()}}</p>
-                                                <p>{{memory.$getDescription()}}</p>
-                                              </div>
+                                            <div class="photo-box">
+                                                <div class="photo-box-title" style="margin-bottom:10px;height:55px;text-align:left;margin-top:0">{{story.$getTitle()}} </div>
+                                                <div class="photo-box-desc">{{memory.$getDescription()}}</div>
                                             </div>
                                         </div>
                                     </li>

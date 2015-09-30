@@ -10,10 +10,43 @@ body p {
     font-family: 'Open Sans', sans-serif;
 }
 
-.panel-custom {
-    height: 200px;
+.photo-box {
+    min-height: 200px;
+    height: auto;
     width: 200px;
     overflow: hidden;
+    box-shadow: 0px 5px 0px rgba(0, 0, 0, 0.1);
+    background: #FFF none repeat scroll 0% 0%;
+    margin: 10px;
+    padding: 10px;
+    padding-bottom: 20px;
+    overflow: hidden;
+}
+
+.photo-box .photo {
+    width: 100%;
+    overflow: hidden;
+}
+
+.photo-box-title {
+    margin-top: 10px;
+    font-size: 14px;
+    position: relative;
+    min-height: 19px;
+    height: auto !important;
+    padding-top: 4px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.photo-box-desc {
+    border: 1px solid #CACACA;
+    background-color: #EEE;
+    color: #3C3B36;
+    padding: 7.5px;
+    height: 135px;
+    position: relative;
 }
 
 .ancestorName {
@@ -256,7 +289,9 @@ ul, li {
 }
 
 
-
+.modal-body.modal-custom {
+    background: #EEE none repeat scroll 0% 0%;
+}
 .modal-template ul li {
    list-style-type: none;
    /*background: #f1f1f1;*/
@@ -297,7 +332,7 @@ span.spinner-memories {
 }
 
 .panel-group .panel .panel-heading {
-    background: transparent;
+    background: #EEE none repeat scroll 0% 0%;
     border: 0;
     /*height: auto !important;*/
     /*min-height: 80px;*/
@@ -320,6 +355,7 @@ span.spinner-memories {
 
 .panel-group .panel .panel-body {
     border: none !important;
+    background: #EEE none repeat scroll 0% 0%;
     margin-top: 0;
     padding-top: 0;
     line-height: 1.25;
