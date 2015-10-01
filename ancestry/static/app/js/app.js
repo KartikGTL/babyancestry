@@ -5,13 +5,13 @@ var babyApp = angular.module('babyApp', ['ngRoute', 'ngCookies', 'ui.bootstrap',
 //---------------
 // Routes
 //---------------
-babyApp.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
-    $routeProvider
-        .when('/', {
-            templateUrl: 'home.html',
-            controller: 'MainCtrl'
-        })
-}]);
+//babyApp.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+//    $routeProvider
+//        .when('/', {
+//            templateUrl: '/',
+//            controller: 'MainCtrl'
+//        })
+//}]);
 
 babyApp.credentials = {
     // DEV SETTINGS

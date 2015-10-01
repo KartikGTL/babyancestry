@@ -1,0 +1,120 @@
+<!--    <script type="text/ng-template" id="modalContent.html"> -->
+<div class="modal-body modal-custom">
+                <a class="btn btn-default" id="about-baby-ancestry" href="" ng-click="showAboutModal();">About Baby Ancestry</a>
+    <div class="modal-template">
+        <accordion close-others="oneAtATime">
+            <accordion-group heading="" ng-repeat="item in items | orderObjectBy: 'ahnentafel_number' : false">
+                <accordion-heading>
+                    <div style="text-align:center;" ng-click="getMemories(item, items.indexOf(item)); item.fullDetailsClicked = true;">
+                        <div class="panel-title-wrap">
+                            <span class="glyphicon glyphicon-chevron-down" style="width:10%"></span>
+                            <span style="width: 70%;">{{ item.fsObj.$getDisplayName() }}</span>
+                            <span class="spinner-memories" style="">
+                                <div style="font-size: 10pt; text-transform: capitalize;" ng-show="item.memoriesCount > 0">
+                                    {{ item.memoriesCount + (item.memoriesCount == 1 ? " Memory" : " Memories") }}
+                                </div>&nbsp;
+                                <span style="width: 50px; height:50px; border-radius: 50%; overflow:hidden;">
+                                    <img ng-src="{{item.portrait}}" style="width: auto; max-height: 50px;">
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </accordion-heading>
+                <div ng-if="item.fullDetailsClicked">
+                    <p class="lifesp">
+                        {{ item.fsObj.$getBirthDate() }}
+                        <span ng-if="item.fsObj.living == true">- Living</span>
+                        <span ng-if="item.fsObj.living == false">
+                            <span ng-if"item.fsObj.$getDeathDate() != undefined">
+                                - {{ item.fsObj.$getDeathDate() }}
+                            </span>
+                        </span>
+                    </p>
+
+                    <p class="personrel"><em>{{ personRelation(item.fsObj) }}</em></p>
+                    <div class="stories">
+                       <!--<div>
+                            <div style="min-height: 200px">
+                                <carousel interval="myInterval" no-wrap="noWrapSlides">
+                                    <slide ng-if="story.$getThumbnailUrl() != undefined"
+                                           ng-repeat="story in item.memories" active="slide.active">
+                                        <img ng-src="{{story.$getThumbnailUrl()}}" style="margin:auto;">
+
+                                        <div class="carousel-caption">
+                                            <h4 style="color:black;">{{story.$getTitle()}}</h4>
+
+                                            <p style="color:black;">{{story.$getDescription()}}</p>
+                                        </div>
+                                    </slide>
+                                </carousel>
+                            </div>
+                        </div>-->
+
+                        <ul>
+                            <li ng-repeat="story in item.memories" style="display:inline-block;">
+                                <div ng-if="((story.mediaType == 'image/png') || (story.mediaType == 'image/jpeg'))">
+                                    <div class="photo-box">
+                                      <div class="photo">
+                                        <img src="{{ story.$getThumbnailUrl() }}">
+                                      </div>
+                                      <div class="photo-box-title">{{story.$getTitle()}} - {{memory.$getDescription()}}</div>
+                                    </div>
+                                </div>
+                                <div ng-if="story.mediaType == 'text/plain'">
+                                    <div class="photo-box">
+                                        <div class="photo-box-title" style="margin-bottom:10px;height:55px;text-align:left;margin-top:0">{{story.$getTitle()}} </div>
+                                        <div class="photo-box-desc">{{memory.$getDescription()}}</div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <br>
+
+                    <div class="find">
+                        <p><a href="{{ 'http://www.behindthename.com/names/search.php?terms=' +  item.fsObj.$getGivenName() }}" target="_blank">
+                            {{ item.fsObj.$getGivenName() }} at behindthename.com
+                        </a></p>
+
+                        <p><a href="{{ 'https://familysearch.org/tree/#view=ancestor&person=' + item.fsObj.id + '&section=details' }}" target="_blank">
+                            View on familysearch.com
+                        </a></p>
+                    </div>
+                </div>
+            </accordion-group>
+        </accordion>
+
+
+        <!--
+                    <ul>
+                      <li ng-repeat="item in items">
+                        <a href="">
+                            <p class="ancestorName"> {{ item.fsObj.$getDisplayName() }}</p>
+                            <p>
+                                {{ item.fsObj.$getBirthDate() }}
+                                <span ng-if="item.fsObj.living == true">- Living</span>
+                                <span ng-if="item.fsObj.living == false">- {{ item.fsObj.$getDeathDate() }}</span>
+                            </p>
+                            <p><em>{{ personRelation(item.fsObj) }}</em></p>
+                            <p><span ng-show="memories">4 Memories</span></p>
+                        </a>
+                        <div ng-controller="MainCtrl">
+                            <p style="text-align:center;"><a style="text-decoration:underline;" href="" ng-click="showStories(item)" ng-hide="isStoriesLoaded">Show Stories</a></p>
+                            <div class="personDetails" ng-show="isStoriesLoaded" style="text-align:center;">
+                                <div class="stories">
+                                    <ul>
+                                        <li ng-repeat="story in stories" style="display:inline-block;">
+                                            <div ng-if="story.$getThumbnailUrl() != undefined"><img src="{{story.$getThumbnailUrl()}}"></div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="find">
+                                    <p><a href="">{{ item.fsObj.$getGivenName() }} at behindthename.com</a></p>
+                                    <p><a href="https://familysearch.org/tree/#view=ancestor&person="+ item.fsObj.id +"&section=details" target="_blank">View on familysearch.com</a></p>
+                                </div>
+                            </div>
+                        </div>
+                      </li>
+                    </ul>-->
+    </div>
+</div>

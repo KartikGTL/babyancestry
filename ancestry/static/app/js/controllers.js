@@ -47,7 +47,7 @@ babyApp.controller('MainCtrl', ['$scope', 'MainService', '$location', '$http', '
      });
      }*/
     // Actions
-    $scope.openModal = function (givenName) {
+    $scope.openNamesModal = function (givenName) {
         // for (var i = 0; i < $scope.ancestorsList[givenName].persons.length; i++){
         //   var person = $scope.ancestorsList[givenName].persons[i];
         //   // fs.getPersonMemoriesQuery(person.id).then(function (response) {
@@ -64,7 +64,7 @@ babyApp.controller('MainCtrl', ['$scope', 'MainService', '$location', '$http', '
 
         var modalInstance = $modal.open({
             animation: true,
-            templateUrl: 'modalContent.html',
+            templateUrl: '/static/app/html/names_modal.html',
             controller: 'ModalInstanceCtrl',
             resolve: {
                 firstName: function () {
