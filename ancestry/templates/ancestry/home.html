@@ -16,82 +16,76 @@
 
     <!-- Templates -->
     <!-- Todo: Move to partials folder (or another directory) -->
-    <div ng-controller="MainCtrl">
-        <div id="top">
-            <div class="header">
-                <p id="user-details" class="text-center" ng-show="loggedIn">
-                    Welcome <span ng-show="contactName">{{ contactName }}</span>!<span class="name"></span>
-                    <a style="text-decoration:underline;" id="logout-user" ng-click="logoutUser()"
-                       href="">Logout</a>
-                </p>
-            </div>
-            <div class="subheader text-center">
-                <div class="filter" ng-show="ancestorsLoaded">
-                    <a class="btn btn-default" id="boy-names" href="">Boy Names</a>
-                    <a class="btn btn-default" id="girl-names" href="">Girl Names</a>
-                    <a class="btn btn-default active" id="all-names" href="">All Names</a>
-                </div>
-                <a class="btn btn-default" id="about-baby-ancestry" href="" ng-click="showAboutModal();">About Baby Ancestry</a>
-                <a class="btn btn-default" href="/feedback">Leave Feedback</a>
-            </div>
+    <div id="top">
+        <div class="header">
+            <p id="user-details" class="text-center" ng-show="loggedIn">
+                Welcome <span ng-show="contactName">{{ contactName }}</span>!<span class="name"></span>
+                <a style="text-decoration:underline;" id="logout-user" ng-click="logoutUser()"
+                   href="">Logout</a>
+            </p>
         </div>
-
-        <div id="top-login" ng-show="loadingAncestors">
-            <div class="box-login">
-                <h2>
-                    Scanning your ancestors. <br>
-                    This might take a minute or two...
-                </h2>
-                <img width="50" ng-src="/static/app/img/ajax-loader2.gif" src="/static/app/img/ajax-loader2.gif">
-            </div>
-        </div>
-
-        <div id="top-login" ng-hide="loggedIn">
-            <div class="box-login">
-                <p>Welcome to BabyAncestry.com!
-                    We will automatically scan your family
-                    history and create a list of name suggestions
-                    for your new little one.</p>
-
-                <p>To get started, simply log in to
-                    Family Search Database, where you will be
-                    momentarily re-routed from our site.</p>
-                <a ng-click="loginUser()" class="btn btn-lg btn-info">Get Started</a>
-            </div>
-        </div>
-
-
-        <div id="content" ng-show="loggedIn">
-            <div class="container">
-                <div class="template-grid">
-                    <div class="container">
-                        <div id="ancestors">
-                            <div id="anc-spinner"></div>
-                            <ul>
-                                <li class="{{obj.persons[0].fsObj.$getDisplayGender()}}"
-                                    ng-repeat="obj in ancestorsList | orderObjectBy: 'personsCount' : true">
-                                    <a href="" data-toggle="modal" ng-click="openNamesModal(obj.category)">
-                                        <span class="ancestorName">
-                                           {{ obj.category }}
-                                        </span>
-                                        <span>
-                                            ({{ obj.personsCount + (obj.personsCount > 1 ? ' people' : ' person') }} )
-                                        </span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!--<div class="footer_btn template-footer">
-                    <a id="add_aunts" class="A btn btn-default theme-btn" href="">Add Aunts</a>
-                    <a id="add_uncles" class="U btn btn-default theme-btn" href="">Add Uncles</a>
-                </div>-->
+        <div class="subheader text-center">
+            <div class="filter" ng-show="ancestorsLoaded">
+                <a class="btn btn-default" id="boy-names" href="">Boy Names</a>
+                <a class="btn btn-default" id="girl-names" href="">Girl Names</a>
+                <a class="btn btn-default active" id="all-names" href="">All Names</a>
             </div>
         </div>
     </div>
 
+    <div id="top-login" ng-show="loadingAncestors">
+        <div class="box-login">
+            <h2>
+                Scanning your ancestors. <br>
+                This might take a minute or two...
+            </h2>
+            <img width="50" ng-src="/static/app/img/ajax-loader2.gif" src="/static/app/img/ajax-loader2.gif">
+        </div>
+    </div>
 
+    <div id="top-login" ng-hide="loggedIn">
+        <div class="box-login">
+            <p>Welcome to BabyAncestry.com!
+                We will automatically scan your family
+                history and create a list of name suggestions
+                for your new little one.</p>
+
+            <p>To get started, simply log in to
+                Family Search Database, where you will be
+                momentarily re-routed from our site.</p>
+            <a ng-click="loginUser()" class="btn btn-lg btn-info">Get Started</a>
+        </div>
+    </div>
+
+
+    <div id="content" ng-show="loggedIn">
+        <div class="container">
+            <div class="template-grid">
+                <div class="container">
+                    <div id="ancestors">
+                        <div id="anc-spinner"></div>
+                        <ul>
+                            <li class="{{obj.persons[0].fsObj.$getDisplayGender()}}"
+                                ng-repeat="obj in ancestorsList | orderObjectBy: 'personsCount' : true">
+                                <a href="" data-toggle="modal" ng-click="openNamesModal(obj.category)">
+                                    <span class="ancestorName">
+                                       {{ obj.category }}
+                                    </span>
+                                    <span>
+                                        ({{ obj.personsCount + (obj.personsCount > 1 ? ' people' : ' person') }} )
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="footer_btn template-footer">
+                <a id="add_aunts" class="A btn btn-default theme-btn" href="">Add Aunts</a>
+                <a id="add_uncles" class="U btn btn-default theme-btn" href="">Add Uncles</a>
+            </div>-->
+        </div>
+    </div>
 
     {% endverbatim %}
 {% endblock content %}

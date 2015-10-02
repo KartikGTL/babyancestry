@@ -89,7 +89,8 @@ babyApp.controller('MainCtrl',
     $scope.showAboutModal = function(){
         var modalInstance = $modal.open({
             templateUrl : '/static/app/html/about_modal.html',
-            controller : 'AboutModalCtrl'
+            controller : 'AboutModalCtrl',
+            backdrop: true
         });
 
         modalInstance.result.then(function(data) {

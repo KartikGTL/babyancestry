@@ -15,36 +15,31 @@
         var spinner = new Spinner().spin(target);
     </script>
 
-    <!-- Templates -->
-    <!-- Todo: Move to partials folder (or another directory) -->
-    <script type="text/ng-template" id="home.html">
-        <div ng-controller="MainCtrl">
-            <div id="top">
-                <div class="header">
-                    <p id="user-details" class="text-center" ng-show="loggedIn">
-                        Welcome <span ng-show="contactName">{{ contactName }}</span>!<span class="name"></span>
-                        <a style="text-decoration:underline;" id="logout-user" ng-click="logoutUser()"
-                           href="">Logout</a>
-                    </p>
-                </div>
-                <div class="subheader text-center">
-                    <a class="btn btn-default" href="/">Home</a>
-                </div>
-            </div>
 
-            <div class="container-fluid">
-
-                <div class="row">
-                    <div class="col-xs-12   col-sm-8 col-sm-offset-2    col-md-8 col-md-offset-2">
-                        <h1>We would love to hear your feedback!
-                            Please leave a comment.</h1>
-
-                    </div>
-                </div>
-            </div>
-
+    <div id="top">
+        <div class="header">
+            <p id="user-details" class="text-center" ng-show="loggedIn">
+                Welcome <span ng-show="contactName">{{ contactName }}</span>!<span class="name"></span>
+                <a style="text-decoration:underline;" id="logout-user" ng-click="logoutUser()"
+                   href="">Logout</a>
+            </p>
         </div>
-    </script>
+        <div class="subheader text-center">
+            <a class="btn btn-default" href="/">Home</a>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-xs-12   col-sm-8 col-sm-offset-2    col-md-8 col-md-offset-2">
+                <h1>We would love to hear your feedback!
+                    Please leave a comment.</h1>
+
+            </div>
+        </div>
+    </div>
+
 
 
     <!-- disqus -->
