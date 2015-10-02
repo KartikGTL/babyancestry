@@ -4,14 +4,13 @@
     <div class="modal-template">
 
         <h1>Memory Details</h1>
-        test
         <div ng-if="(( memory.mediaType.substring(0, 5) == 'image' ))">
             <img src="{{ memory.$getImageUrl() }}">
             <div class="photo-box-title">{{ memory.$getTitle() }} - {{memory.$getDescription()}}</div>
         </div>
         <div ng-if="memory.mediaType == 'text/plain'">
             <div>{{ memory.$getTitle() }} </div>
-            <div>{{ fullStory }}</div>
+            <div class="full-story-box">{{ fullStory }}</div>
         </div>
     </div>
 

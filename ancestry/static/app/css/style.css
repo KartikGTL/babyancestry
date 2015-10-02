@@ -50,6 +50,11 @@ body p {
     overflow: hidden;
 }
 
+.full-story-box {
+    white-space: pre-wrap;
+    line-height: 1.5;
+}
+
 .ancestorName {
     /*display: inline-block;*/
     font-size: 32px;
