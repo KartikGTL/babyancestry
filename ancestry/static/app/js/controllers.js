@@ -229,7 +229,8 @@ babyApp.controller('MemoryModalCtrl', function($scope, $modalInstance, $modal, $
             method: 'GET',
             url: memory.about
         }).then(function successCallBackResponse(response){
-            $scope.fullStory = response.data;
+            // Add some whitespace between paragraphs
+            $scope.fullStory = response.data.replace('\n', '\n\n');
         });
     }
 });
