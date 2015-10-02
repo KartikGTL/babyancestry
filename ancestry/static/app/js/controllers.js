@@ -3,7 +3,9 @@
 // Controllers
 //---------------
 
-babyApp.controller('MainCtrl', ['$scope', 'MainService', '$location', '$http', '$q', '$timeout', '$modal', '$log', '$window', function ($scope, MainService, $location, $http, $q, $timeout, $modal, $log, $window) {
+babyApp.controller('MainCtrl',
+    ['$scope', 'MainService', '$location', '$http', '$q', '$timeout', '$modal', '$log', '$window',
+        function ($scope, MainService, $location, $http, $q, $timeout, $modal, $log, $window) {
     var fs = MainService.fsClient();
 
     $scope.contactName = 'User';
@@ -13,8 +15,8 @@ babyApp.controller('MainCtrl', ['$scope', 'MainService', '$location', '$http', '
     $scope.ancestorsLoaded = false;
 
     $scope.loginUser = function () {
-        $scope.loadingAncestors = true;
         fs.getAccessToken().then(function (accessToken) {
+            $scope.loadingAncestors = true;
             fs.getCurrentUser().then(function (response) {
                 $scope.loggedIn = true;
 
@@ -72,7 +74,7 @@ babyApp.controller('MainCtrl', ['$scope', 'MainService', '$location', '$http', '
                 },
                 items: function () {
                     return $scope.ancestorsList[givenName].persons;
-                },
+                }
             }
         });
 
@@ -87,7 +89,7 @@ babyApp.controller('MainCtrl', ['$scope', 'MainService', '$location', '$http', '
     $scope.showAboutModal = function(){
         var modalInstance = $modal.open({
             templateUrl : '/static/app/html/about_modal.html',
-            controller : 'AboutModalCtrl',
+            controller : 'AboutModalCtrl'
         });
 
         modalInstance.result.then(function(data) {
@@ -98,7 +100,7 @@ babyApp.controller('MainCtrl', ['$scope', 'MainService', '$location', '$http', '
 
 }]);
 
-babyApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, MainService, items, firstName) {
+babyApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, $modal, MainService, items, firstName) {
     var fs = MainService.fsClient();
     $scope.items = items;             // List of persons
     $scope.ancestors = MainService.ancestors();
@@ -188,14 +190,46 @@ babyApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, MainSe
         isFirstDisabled: false
     };
 
+
+    $scope.openMemoryModal = function(memory){
+        var modalInstance = $modal.open({
+            templateUrl : '/static/app/html/memory_modal.html',
+            controller : 'MemoryModalCtrl',
+            resolve: {
+                memory: function(){return memory;}
+            }
+        });
+
+        modalInstance.result.then(function(data) {
+            $scope.name = data;
+        });
+    };
+
+
+
     // Send off the requests to load all the memories
     for(var i=0; i<items.length; i++){
         $scope.getMemories(items[i], i);
     }
 
-});
 
 
-babyApp.controller('AboutModalCtrl', function($scope, $modalInstance, $modal) {
 
 });
+
+
+babyApp.controller('AboutModalCtrl', function($scope, $modalInstance, $modal) {});
+
+
+babyApp.controller('MemoryModalCtrl', function($scope, $modalInstance, $modal, $http, memory) {
+    $scope.memory = memory;
+    if(memory.mediaType == "text/plain"){
+        $http({
+            method: 'GET',
+            url: memory.about
+        }).then(function successCallBackResponse(response){
+            $scope.fullStory = response.data;
+        });
+    }
+});
+

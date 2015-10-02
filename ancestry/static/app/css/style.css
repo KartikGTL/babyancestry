@@ -47,6 +47,7 @@ body p {
     padding: 7.5px;
     height: 135px;
     position: relative;
+    overflow: hidden;
 }
 
 .ancestorName {
@@ -195,7 +196,7 @@ body p {
 
 #top-login .box-login {
     width: 500px;
-    margin : 10% auto;
+    margin : 5% auto;
     padding: 20px;
     text-align: center;
     background: white;
