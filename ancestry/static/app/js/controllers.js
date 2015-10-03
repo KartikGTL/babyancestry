@@ -141,6 +141,10 @@ babyApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, $modal
     $scope.personRelation = function (item) {
         // Get the person's relation using the Ahnentafel method:
         // https://en.wikipedia.org/wiki/Ahnentafel
+
+        // TODO: Use this to get the details of the relationship and display it to the user:
+        // https://familysearch.org/tree-data/my-relatives/relation/KFB8-Y2V?mockRelationDataEx=false
+
         var order = Math.floor(item.$getAscendancyNumber());
 
         var gender = item.$getDisplayGender();
@@ -230,7 +234,10 @@ babyApp.controller('MemoryModalCtrl', function($scope, $modalInstance, $modal, $
             url: memory.about
         }).then(function successCallBackResponse(response){
             // Add some whitespace between paragraphs
-            $scope.fullStory = response.data.replace('\n', '\n\n');
+            $scope.fullStory = response.data.
+                replace('\r\n', '\n').
+                replace('\r', '\n').
+                replace('\n', '\n\n');
         });
     }
 });
