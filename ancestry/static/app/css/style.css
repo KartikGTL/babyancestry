@@ -401,3 +401,22 @@ span.spinner-memories {
     max-width: 100%;
     max-height: 100%;
 }
+
+.x-close-button{
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 1.5em;
+    width: 1.5em;
+    overflow: hidden;
+    padding: .2em;
+    font-size: 1.5em;
+    color: rgba(0, 0, 0, .6);
+}
+.x-close-button:hover{
+    text-decoration: none;
+    color: rgba(0, 0, 0, .8);
+}
+.x-close-button:before{
+    content: "✕";
+}

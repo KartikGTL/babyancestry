@@ -223,7 +223,11 @@ babyApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, $modal
 });
 
 
-babyApp.controller('AboutModalCtrl', function($scope, $modalInstance, $modal) {});
+babyApp.controller('AboutModalCtrl', function($scope, $modalInstance, $modal) {
+    $scope.cancel = function () {
+        $modalInstance.close('cancel');
+    };
+});
 
 
 babyApp.controller('MemoryModalCtrl', function($scope, $modalInstance, $modal, $http, memory) {
