@@ -394,3 +394,10 @@ span.spinner-memories {
 .left.carousel-control, .right.carousel-control {
     background: transparent !important;
 }
+
+.memory-image{
+    /* Make the images not extend beyond their bounds. I don't know if the max-height does anything.
+    */
+    max-width: 100%;
+    max-height: 100%;
+}
