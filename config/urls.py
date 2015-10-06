@@ -13,5 +13,5 @@ urlpatterns = [
 
     # Familysearch redirects here in the little popup window. Show something
     # rather than just a 400 error
-    url(r'^fs/callback/$', RedirectView.as_view(url='/static/app/img/elephant')),
+    url(r'^fs/callback/$', RedirectView.as_view(url='/static/app/img/elephant.png', permanent=False)),
 ]
