@@ -41,27 +41,6 @@ babyApp.factory('MainService', ['$location', '$http', '$q', '$timeout', function
             build[firstName].persons[arrayIndex].memories = memoriesList;
             build[firstName].persons[arrayIndex].memoriesCount = memoriesList.length;
         },
-        //buildAllMemories: function (firstName) {
-        //    for (var i = 0; i < build[firstName]['persons'].length; i++) {
-        //        var p = build[firstName]['persons'][i];
-        //        client.getPersonMemoriesQuery(p.pid).then(function (response) {
-        //            var memoriesResp = response.getMemories();
-        //            p.memories = memoriesResp;
-        //            console.log('MEMORIES: ' + p);
-        //        });
-        //
-        //        client.getPersonPortraitUrl(p.pid, {
-        //            default: 'http://babyancestry.com/static/app/img/browsers/Male-avatar.png',
-        //            followRedirect: true,
-        //        }).then(function (response) {
-        //            if (response) {
-        //                p.portrait = response;
-        //            }
-        //            console.log("PORTRAIT: " + response);
-        //        });
-        //        console.log('YEAH: ' + p);
-        //    }
-        //},
 
         // When the response comes back from familysearch with all our ancestors,
         // this function turns the raw data into lists of first names.

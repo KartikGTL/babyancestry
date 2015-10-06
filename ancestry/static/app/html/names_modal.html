@@ -20,6 +20,12 @@
                         </div>
                     </div>
                 </accordion-heading>
+
+                <!--
+                    The ng-if here causes the details to be completely removed until the user clicks to view them.
+                    This is important because without it, all the images will be loaded in the background even
+                    if they are never seen, which causes a big increase in bandwidth and a significant slowdown of the page.
+                -->
                 <div ng-if="item.fullDetailsVisible">
                     <p class="lifesp">
                         {{ item.fsObj.$getBirthDate() }}

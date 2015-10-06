@@ -36,9 +36,11 @@
     <div id="top-login" ng-show="loadingAncestors">
         <div class="box-login">
             <h2>
-                Scanning your ancestors. <br>
-                This might take a minute or two...
+                Scanning your ancestors
             </h2>
+            <p><i>
+                This might take a minute or two...
+            </i></p>
             <img width="50" ng-src="/static/app/img/ajax-loader2.gif" src="/static/app/img/ajax-loader2.gif">
         </div>
     </div>
@@ -46,14 +48,11 @@
     <div id="top-login" ng-hide="loggedIn || loadingAncestors">
         <div class="box-login">
             <p>Welcome to BabyAncestry.com!
-                We will automatically scan your family
+                We will scan your family
                 history and create a list of name suggestions
-                for your new little one.</p>
+                for your new little one. Please sign in to Family Search to begin</p>
 
-            <p>To get started, simply log in to
-                Family Search Database, where you will be
-                momentarily re-routed from our site.</p>
-            <a ng-click="loginUser()" class="btn btn-lg btn-info">Get Started</a>
+            <a ng-click="loginUser()" class="btn btn-lg btn-info">Sign in to Family Search</a>
         </div>
     </div>
 
