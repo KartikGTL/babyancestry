@@ -72,7 +72,7 @@ babyApp.factory('MainService', ['$location', '$http', '$q', '$timeout', function
                 var person = persons[i];
                 var firstName = getFirstName(person.$getGivenName());
 
-                if (firstName != undefined) {
+                if (firstName != undefined && firstName != null && firstName.toLowerCase() != "none") {
                     if (!build.hasOwnProperty(firstName)) {
                         // Create a dictionary with key = name, value = corresponding details such as persons array
                         build[firstName] = {};
