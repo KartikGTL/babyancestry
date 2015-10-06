@@ -8,10 +8,10 @@ urlpatterns = [
     # url(r'^blog/', include('blog.urls')),
     
     url(r'^', include('ancestry.urls', namespace="ancestry")),
-    url(r'^admin/', include(admin.site.urls)),
     url(r'^feedback/$', 'ancestry.views.feedback', name='feedback'),
+    url(r'^admin/', include(admin.site.urls)),
 
     # Familysearch redirects here in the little popup window. Show something
     # rather than just a 400 error
-    url(r'^fs/callback/$', RedirectView.as_view(url='/static/app/img/elephant.png', permanent=False)),
+    # url(r'^fs/callback/$', RedirectView.as_view(url='/static/app/img/elephant.png', permanent=False)),
 ]
