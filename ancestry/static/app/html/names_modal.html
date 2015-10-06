@@ -3,9 +3,9 @@
     <a href="#" class="x-close-button" ng-click="cancel()"></a>
     <div class="modal-template">
         <accordion close-others="oneAtATime">
-            <accordion-group heading="" ng-repeat="item in items | orderObjectBy: 'ahnentafel_number' : false">
+            <accordion-group heading="" ng-repeat="item in items | orderObjectBy: 'ahnentafel_number' : false" is-open="item.fullDetailsVisible">
                 <accordion-heading>
-                    <div style="text-align:center;" ng-click="getMemories(item, items.indexOf(item)); item.fullDetailsClicked = true;">
+                    <div style="text-align:center;" ng-click="getMemories(item, items.indexOf(item))">
                         <div class="panel-title-wrap">
                             <span class="glyphicon glyphicon-chevron-down" style="width:10%"></span>
                             <span style="width: 70%;">{{ item.fsObj.$getDisplayName() }}</span>
@@ -20,7 +20,7 @@
                         </div>
                     </div>
                 </accordion-heading>
-                <div ng-if="item.fullDetailsClicked">
+                <div ng-if="item.fullDetailsVisible">
                     <p class="lifesp">
                         {{ item.fsObj.$getBirthDate() }}
                         <span ng-if="item.fsObj.living == true">- Living</span>

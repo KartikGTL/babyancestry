@@ -131,6 +131,7 @@ babyApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, $modal
                     MainService.buildPortrait(firstName, arrayIndex, response);
                 }
                 console.log("PORTRAIT: " + response);
+
             });
 
             item.memoriesLoaded = true;
@@ -211,16 +212,22 @@ babyApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, $modal
     };
 
 
+    $scope.cancel = function () {
+        $modalInstance.close('cancel');
+    };
+
 
     // Send off the requests to load all the memories
+    // I Have the feeling that this is the wrong place to be doing this, but
+    // I'm too much of an angular newb to know the right way to do it.
     for(var i=0; i<items.length; i++){
         $scope.getMemories(items[i], i);
     }
 
-
-    $scope.cancel = function () {
-        $modalInstance.close('cancel');
-    };
+    // Again, this probably isn't supposed to go here but I don't know a better way to do it.
+    if(items.length == 1){
+        items[0].fullDetailsVisible = true;
+    }
 
 });
 

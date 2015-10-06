@@ -91,7 +91,7 @@ babyApp.factory('MainService', ['$location', '$http', '$q', '$timeout', function
                     person_obj['memoriesCount'] = 0;
                     person_obj['ahnentafel_number'] = Math.floor(person.$getAscendancyNumber());
                     person_obj['memories_loaded'] = false;
-                    person_obj['fullDetailsClicked'] = false;
+                    person_obj['fullDetailsVisible'] = false;
 
                     person_obj['portrait'] = '/static/app/img/ajax-loader2.gif';
 
