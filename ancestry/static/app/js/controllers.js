@@ -218,7 +218,9 @@ babyApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, $modal
     }
 
 
-
+    $scope.cancel = function () {
+        $modalInstance.close('cancel');
+    };
 
 });
 
@@ -244,5 +246,8 @@ babyApp.controller('MemoryModalCtrl', function($scope, $modalInstance, $modal, $
                 replace('\n', '\n\n');
         });
     }
+    $scope.cancel = function () {
+        $modalInstance.close('cancel');
+    };
 });
 
