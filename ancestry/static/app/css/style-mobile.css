@@ -37,6 +37,14 @@
 	background: url(../img/bg-pattern-down.png) repeat-x center top;
 	height: 25px;
 }
+.footer-ribbon {
+	height: 25px;
+	background: url(../img/bg-pattern-up.png) repeat-x center top;
+}
+.footer-ribbon-down {
+	height: 25px;
+	background: url(../img/bg-pattern-down.png) repeat-x center top;
+}
 .top-section .nav-section .nav-logo {
 	display: none;
 }
@@ -44,6 +52,9 @@
 	/*.top-section .logo-section, .top-section .nav-section, .top-section .ribbon-section{
 		display: inline-block;
 	}*/
+	#footer .trademark a.btn {
+		font-size: 11px;
+	}
 	.top-section .nav-section p#user-details{
 		font-size: 11px;
 	}

@@ -87,38 +87,34 @@
                 history and create a list of name suggestions
                 for your new little one. Please sign in to Family Search to begin</p>
 
-            <a ng-click="loginUser()" class="btn btn-lg btn-info">Sign in to Family Search</a>
+            <a ng-click="loginUser()" class="btn btn-md btn-info">Sign in to Family Search</a>
         </div>
     </div>
 
 
     <div id="content" ng-show="loggedIn">
-        <div class="container">
-            <div class="template-grid">
-                <div class="container">
-                    <div id="ancestors">
-                        <div id="anc-spinner"></div>
-                        <ul>
-                            <li class="{{obj.persons[0].fsObj.$getDisplayGender()}}"
-                                ng-repeat="obj in ancestorsList | orderObjectBy: 'personsCount' : true">
-                                <a href="" data-toggle="modal" ng-click="openNamesModal(obj.category)">
-                                    <span class="ancestorName">
-                                       {{ obj.category }}
-                                    </span>
-                                    <span>
-                                        ({{ obj.personsCount + (obj.personsCount > 1 ? ' people' : ' person') }} )
-                                    </span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+        <div class="template-grid">
+                <div id="ancestors">
+                    <div id="anc-spinner"></div>
+                    <ul>
+                        <li class="{{obj.persons[0].fsObj.$getDisplayGender()}}"
+                            ng-repeat="obj in ancestorsList | orderObjectBy: 'personsCount' : true">
+                            <a href="" data-toggle="modal" ng-click="openNamesModal(obj.category)">
+                                <span class="ancestorName">
+                                   {{ obj.category }}
+                                </span>
+                                <span>
+                                    ({{ obj.personsCount + (obj.personsCount > 1 ? ' people' : ' person') }} )
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
-            </div>
+        </div>
             <!--<div class="footer_btn template-footer">
                 <a id="add_aunts" class="A btn btn-default theme-btn" href="">Add Aunts</a>
                 <a id="add_uncles" class="U btn btn-default theme-btn" href="">Add Uncles</a>
             </div>-->
-        </div>
     </div>
 
     {% endverbatim %}
