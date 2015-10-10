@@ -84,7 +84,7 @@ body p {
 .subheader {
     padding:10px 50px;
     min-height: 100px;
-    border-top: 4px solid #ACACAC;
+    /*border-top: 4px solid #ACACAC;*/
     /*border: 1px solid #d2d6d5;*/
     /*border-top: none;*/
 }
@@ -181,7 +181,7 @@ body p {
 .filter a {
     background: #ACACAC;
     box-shadow: rgba(0,0,0,.5) 2px 2px 2px;
-    margin-right: 10px;
+    /*margin-right: 10px;*/
     color: white;
     border-radius: 0;
     border:0;
@@ -215,19 +215,24 @@ body p {
 
 #top {
     background: white;
-    background: url(../img/footer.png) repeat-x bottom center;
+    /*background: url(../img/footer.png) repeat-x bottom center;*/
 }
 
 .header {
-    height: 180px;
-    background: url(../img/logo-2.png) no-repeat center center;
+    height: 400px;
+    /*background: url(../img/logo-2.png) no-repeat center center;*/
+    /*background: url(../img/header-merged.png) repeat-x center center;*/
+    background: white;   
+    background-size: 100%;
     position: relative;
     background-color: white;
 }
 
+
+
 #user-details {
-    position: absolute;
-    bottom: 0;
+    /*position: absolute;*/
+    /*bottom: 0;*/
     margin-bottom: 10px;
     width: 100%;
     font-size: 18px;

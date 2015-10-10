@@ -1,0 +1,73 @@
+/*Media Queries For Mobile CSS*/
+.top-section {
+	width: 100%;
+	height: auto;
+}
+
+.top-section .logo-section, .top-section .nav-section, .top-section .ribbon-section{
+	display: block;
+	width: 100%;
+}
+
+.top-section .logo-section a {
+	display: block;
+	width: 100%;
+	height: 150px;
+	background: url(../img/logo-2.png) no-repeat center center;
+	background-size: 100% auto;
+}
+
+.top-section .nav-section {
+	background: url(../img/bg-pattern.png) repeat center bottom;
+	height: 120px;
+	border-top: 4px solid #ACACAC;
+	padding: 20px 0;
+}
+
+.top-section .nav-section .filter, .top-section .nav-section .nav-logo{
+	width: 100%;
+}
+
+.top-section .nav-section .nav-logo {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.top-section .ribbon-section {
+	background: url(../img/bg-pattern-down.png) repeat-x center top;
+	height: 25px;
+}
+.top-section .nav-section .nav-logo {
+	display: none;
+}
+@media (max-width: 680px) {
+	/*.top-section .logo-section, .top-section .nav-section, .top-section .ribbon-section{
+		display: inline-block;
+	}*/
+	.top-section .nav-section p#user-details{
+		font-size: 11px;
+	}
+	.top-section .nav-section .nav-logo {
+		display: block;
+	}
+	.top-section .nav-section .filter a.btn.btn-default{
+		font-size: 10px;
+	}
+	.top-section .nav-section {
+		background: url(../img/bg-pattern.png) repeat center bottom;
+		height: 150px;
+		border-top: 4px solid #ACACAC;
+		padding: 10px 0;
+	}
+	.top-section .ribbon-section {
+		height: 25px;
+	}
+    /*.header {
+        height: 400px;
+        background: url(../img/logo-2.png) no-repeat center center;
+        background: url(../img/header-merged.png) repeat-x center center;
+        background-size: 100% auto;
+        position: relative;
+        background-color: white;
+    }*/
+}
