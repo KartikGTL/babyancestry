@@ -237,6 +237,8 @@ body p {
     margin-bottom: 10px;
     width: 100%;
     font-size: 18px;
+    /* This makes the text a tad more readable. Doesn't do much though */
+    text-shadow: 0 0 1em #82DDED;
 }
 
 #user-details span.name {

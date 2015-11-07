@@ -3,6 +3,12 @@
 
 {# Multiple Modals: http://plnkr.co/edit/KSsewObNMCc5MlE1Uz77?p=preview #}
 
+{% comment %}
+SANDBOX LOGIN:
+URL: https://sandbox.familysearch.org
+User: tuf000205792
+pass: 1234pass
+{% endcomment %}
 
 {% block content %}
     {% verbatim %}
@@ -82,10 +88,10 @@
 
     <div id="top-login" ng-hide="loggedIn || loadingAncestors">
         <div class="box-login">
-            <p>Welcome to BabyAncestry.com!
+            <h4>Welcome to BabyAncestry.com!
                 We will scan your family
                 history and create a list of name suggestions
-                for your new little one. Please sign in to Family Search to begin</p>
+                for your new little one. Please sign in to Family Search to begin.</h4>
 
             <a ng-click="loginUser()" class="btn btn-md btn-info">Sign in to Family Search</a>
         </div>

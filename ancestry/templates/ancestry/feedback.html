@@ -7,6 +7,39 @@
 {% block content %}
     {% verbatim %}
 
+    <div class="top-section">
+        <div class="logo-section hidden-xs">
+            <a href="#"></a>
+        </div>
+        <div class="nav-section text-center">
+            <div class="nav-logo"><img src="../static/app/img/header-mobile.png" width="100%"></div>
+            <div class="filter" ng-show="ancestorsLoaded">
+                <a class="btn btn-default" id="boy-names" href="" style="margin-bottom: 10px;">Boy Names</a>
+                <a class="btn btn-default" id="girl-names" href="" style="margin-bottom: 10px;">Girl Names</a>
+                <a class="btn btn-default active" id="all-names" href="" style="margin-bottom: 10px;">All Names</a>
+                <!-- <div class="row">
+                    <div class="col-md-4">
+                        <a class="btn btn-default" id="boy-names" href="" style="margin-bottom: 10px;">Boy Names</a>
+                    </div>
+                    <div class="col-md-4">
+                        <a class="btn btn-default" id="girl-names" href="" style="margin-bottom: 10px;">Girl Names</a>
+                    </div>
+                    <div class="col-md-4">
+                        <a class="btn btn-default active" id="all-names" href="" style="margin-bottom: 10px;">All Names</a>
+                    </div>
+                </div> -->
+            </div>
+             <p id="user-details" ng-show="loggedIn">
+                Welcome <span ng-show="contactName">{{ contactName }}</span>!<span class="name"></span>
+                <a style="text-decoration:underline;" id="logout-user" ng-click="logoutUser()"
+                   href="">Logout</a>
+            </p>
+            <div class="subheader text-center">
+                <a class="btn btn-default" href="/">Home</a>
+            </div>
+        </div>
+        <div class="ribbon-section"></div>
+    </div>
 
     <div ng-view></div>
 
@@ -15,19 +48,6 @@
         var spinner = new Spinner().spin(target);
     </script>
 
-
-    <div id="top">
-        <div class="header">
-            <p id="user-details" class="text-center" ng-show="loggedIn">
-                Welcome <span ng-show="contactName">{{ contactName }}</span>!<span class="name"></span>
-                <a style="text-decoration:underline;" id="logout-user" ng-click="logoutUser()"
-                   href="">Logout</a>
-            </p>
-        </div>
-        <div class="subheader text-center">
-            <a class="btn btn-default" href="/">Home</a>
-        </div>
-    </div>
 
     <div class="container-fluid">
 
