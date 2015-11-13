@@ -121,8 +121,8 @@ babyApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, $modal
             });
 
             var defaultPortrait = person.$getDisplayGender() == 'Male' ?
-                '/static/img/browsers/Male-avatar.png' :
-                '/static/img/browsers/Female-avatar.png';
+                babyApp.credentials.root_url + '/static/img/browsers/Male-avatar.png' :
+                babyApp.credentials.root_url + '/static/img/browsers/Female-avatar.png';
             fs.getPersonPortraitUrl(person.id, {
                 default: defaultPortrait,
                 followRedirect: true,
