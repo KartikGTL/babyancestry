@@ -48,7 +48,9 @@
 .top-section .nav-section .nav-logo {
 	display: none;
 }
-@media (max-width: 680px) {
+
+/* The big logo is visible down to 768 px */
+@media (max-width: 767px) {
 	/*.top-section .logo-section, .top-section .nav-section, .top-section .ribbon-section{
 		display: inline-block;
 	}*/
@@ -66,7 +68,7 @@
 	}
 	.top-section .nav-section {
 		background: url(../img/bg-pattern.png) repeat center bottom;
-		height: 150px;
+		height: 10%;
 		border-top: 4px solid #ACACAC;
 		padding: 10px 0;
 	}
