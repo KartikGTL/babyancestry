@@ -1,0 +1,25 @@
+{
+  "firebase": "babyancestry",
+  "public": "public",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**",
+    "static/js/app.js"  // We will use the production one
+  ],
+
+  "headers": [ {
+      "source" : "**",
+      "headers" : [ {
+        "key" : "Cache-Control",
+        // Practically disable caching
+        "value" : "max-age=10"
+      } ]
+    } ],
+
+  "rewrites": [
+    {
+      "source": "/static/js/app.js",
+      "destination": "/static/js/app_production.js"
+    } ]
+}
