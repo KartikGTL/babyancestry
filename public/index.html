@@ -69,6 +69,16 @@ pass: 1234pass
 
 <body ng-controller="MainCtrl">
 
+    <!-- Share on Facebook -->
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
     <div ng-view></div>
 
     <!-- <script type="text/javascript">
@@ -82,18 +92,25 @@ pass: 1234pass
         <div class="logo-section hidden-xs">
             <a href="#"></a>
         </div>
-        <div class="nav-section text-center">
+        <div class="nav-section text-center" style="position: relative;">
             <div class="nav-logo"><img src="../static/img/header-mobile.png" width="100%"></div>
-            <div class="filter" ng-show="ancestorsLoaded">
-                <a class="btn btn-default" id="boy-names" href="" style="margin-bottom: 10px;">Boy Names</a>
-                <a class="btn btn-default" id="girl-names" href="" style="margin-bottom: 10px;">Girl Names</a>
-                <a class="btn btn-default active" id="all-names" href="" style="margin-bottom: 10px;">All Names</a>
+
+            <div class="filter">
+                <a class="btn btn-default" id="boy-names" href="" style="margin-bottom: 10px; border-radius: 5px;" ng-show="loggedIn || loadingAncestors">Boy Names</a>
+                <a class="btn btn-default" id="girl-names" href="" style="margin-bottom: 10px; border-radius: 5px;" ng-show="loggedIn || loadingAncestors">Girl Names</a>
+                <a class="btn btn-default active" id="all-names" href="" style="margin-bottom: 10px; border-radius: 5px;" ng-show="loggedIn || loadingAncestors">All Names</a>
+                            <div class="fb-like" data-href="https://babyancestry.com/"
+                 data-layout="button" data-action="like" data-show-faces="false" data-share="true"></div>
             </div>
+
+
              <p id="user-details" ng-show="loggedIn">
                 Welcome <span ng-show="contactName">{{ contactName }}</span>!<span class="name"></span>
                 <a style="text-decoration:underline;" id="logout-user" ng-click="logoutUser()"
                    href="">Logout</a>
             </p>
+            
+
         </div>
         <div class="ribbon-section"></div>
     </div>
